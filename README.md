@@ -7,7 +7,17 @@ O CEAD Solicitações é um sistema interno do CEAD para otimização das solici
 ## Inicialização
 
 1. Clonar esse repositório e acessar a raiz do código rodando `cd CEADSolicitacoes/`
-2. Criar seu ambiente virtual rodando `virtualenv env`
+2. Criar seu ambiente virtual:
+    - Windows:
+    ```bash
+    python -m venv env
+    ```
+
+    - Linux:
+    ```bash
+    virtualenv env
+    ```
+
 3. Inicializar o ambiente virtual rodando:
     
     - Windows:
