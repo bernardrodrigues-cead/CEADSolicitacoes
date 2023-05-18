@@ -37,6 +37,7 @@ class ProducaoDeMaterial(models.Model):
     email = models.EmailField()
     telefone = models.CharField(max_length=20)
     observacao = models.CharField(max_length=255, verbose_name='Observações')
+    criado_em = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"Produção de Material - {self.professor_responsavel}"
