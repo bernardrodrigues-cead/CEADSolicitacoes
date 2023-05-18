@@ -32,7 +32,7 @@ class ProducaoDeMaterial(models.Model):
     setor_curso = models.CharField(max_length=100, verbose_name="Setor Curso")
     projeto_disciplina = models.TextField(verbose_name='Projeto Disciplina')
     equipamentos = models.ManyToManyField(EquipamentoProducaoDeMaterial)
-    equipe_cead = models.BooleanField(default=True, verbose_name='Precisará de nossa equipe de cinegrafistas?')
+    equipe_cead = models.BooleanField(verbose_name='Precisará de nossa equipe de cinegrafistas?')
     numero_participantes = models.IntegerField(choices=CHOICES_PARTICIPANTES, verbose_name='Número de participantes')
     email = models.EmailField()
     telefone = models.CharField(max_length=20)
