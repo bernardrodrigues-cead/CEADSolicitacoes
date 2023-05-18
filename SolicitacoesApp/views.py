@@ -12,5 +12,5 @@ def Index(request):
 class ProducaoDeMaterialCreateView(CreateView) :
     model = ProducaoDeMaterial
     fields = '__all__'
-    template_name = 'SolitacoesApp/producao/create.html'
+    template_name = 'SolicitacoesApp/producao/create.html'
     success_url = reverse_lazy('index')
