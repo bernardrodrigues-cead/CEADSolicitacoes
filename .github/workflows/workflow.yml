@@ -20,7 +20,7 @@ jobs:
           python-version: 3.9
 
       - name: Install dependencies
-        run: pip install -r backend/requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Run tests
         run: |
@@ -33,7 +33,7 @@ jobs:
             EMAIL_HOST_USER=$EMAIL_HOST_USER
             EMAIL_HOST_PASSWORD=$EMAIL_HOST_PASSWORD
             
-            python backend/manage.py test GamePal
+            python manage.py test GamePal
             
         env:
             SECRET_KEY: ${{ secrets.SECRET_KEY }}
