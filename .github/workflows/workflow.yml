@@ -24,7 +24,7 @@ jobs:
 
       - name: Set up environment variables
         run: |
-            if [[ "${{secrets.SECRET_KEY}}" ]]; then
+            if [[ -n "${GITHUB_ACTIONS}" ]]; then
                 SECRET_KEY=${{ secrets.SECRET_KEY }}
                 DEBUG=${{ secrets.DEBUG }}
                 EMAIL_BACKEND=${{ secrets.EMAIL_BACKEND }}
