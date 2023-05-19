@@ -36,7 +36,7 @@ class ProducaoDeMaterial(models.Model):
     numero_participantes = models.IntegerField(choices=CHOICES_PARTICIPANTES, verbose_name='Número de participantes')
     email = models.EmailField(verbose_name="E-mail")
     telefone = models.CharField(max_length=20)
-    observacao = models.CharField(max_length=255, verbose_name='Observações')
+    observacao = models.CharField(max_length=255, verbose_name='Observações', blank=True)
     criado_em = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
