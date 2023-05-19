@@ -23,7 +23,7 @@ class ProducaoDeMaterial(models.Model):
     )
 
     professor_responsavel = models.CharField(max_length=100, verbose_name='Professor Responsável')
-    servicos = models.ManyToManyField(ServicoProducaoDeMaterial, verbose_name='Serviços')
+    servicos = models.ManyToManyField('ServicoProducaoDeMaterial', blank=True, verbose_name='Serviços')
     horario_agendamento = models.TimeField(verbose_name='Horário de Agendamento')
     duracao_gravacao = models.CharField(max_length=20, verbose_name='Duração da Gravação')
     data_entrega_material = models.DateField(verbose_name='Data de Entrega do Material')
@@ -31,7 +31,7 @@ class ProducaoDeMaterial(models.Model):
     criar_arte = models.BooleanField(default=False, verbose_name='Precisa criar arte?')
     setor_curso = models.CharField(max_length=100, verbose_name="Setor Curso")
     finalidade_gravacao = models.TextField(verbose_name='Finalidade da Gravação')
-    equipamentos = models.ManyToManyField(EquipamentoProducaoDeMaterial)
+    equipamentos = models.ManyToManyField('EquipamentoProducaoDeMaterial', blank=True)
     equipe_cead = models.BooleanField(verbose_name='Precisará de nossa equipe de cinegrafistas?')
     numero_participantes = models.IntegerField(choices=CHOICES_PARTICIPANTES, verbose_name='Número de participantes')
     email = models.EmailField(verbose_name="E-mail")
