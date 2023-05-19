@@ -33,7 +33,7 @@ jobs:
             EMAIL_HOST_USER=$EMAIL_HOST_USER
             EMAIL_HOST_PASSWORD=$EMAIL_HOST_PASSWORD
             
-            python manage.py test GamePal
+            python manage.py test SolicitacoesApp
             
         env:
             SECRET_KEY: ${{ secrets.SECRET_KEY }}
