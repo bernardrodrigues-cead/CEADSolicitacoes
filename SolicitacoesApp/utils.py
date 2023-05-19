@@ -9,7 +9,7 @@ class SendEmail(object):
         subject: string
         message: string
         email_from: string
-        recipients: list of email addresses
+        recipients: list of strings
     """
     def __init__(
         self, 
