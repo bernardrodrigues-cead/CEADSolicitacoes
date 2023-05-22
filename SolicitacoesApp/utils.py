@@ -11,14 +11,14 @@ def message_producao(data: dict) -> str:
         Data de Entrega do Material: {data['data_entrega_material']}
         Serviços: {', '.join(data['servicos']) if 'servicos' in data else ''} 
         Arte para produção de material: {data['arte_pronta'] if 'arte_pronta' in data else ''}
-        Precisa criar arte? {data['criar_arte']}
+        Detalhes da arte: {data['detalhes_arte']}
         Setor Curso: {data['setor_curso']}
         Equipamentos: {', '.join(data['equipamentos']) if 'equipamentos' in data else ''}  
         Precisará de nossa equipe de cinegrafistas? {data['equipe_cead']}
         Número de participantes: {data['numero_participantes']}
         E-mail: {data['email']}
         Telefone: {data['telefone']}
-        Observações: {data['observacao']}         
+        Observações: {data['observacao']}      
     '''
 
     return message
