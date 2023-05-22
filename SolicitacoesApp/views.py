@@ -30,19 +30,19 @@ class ProducaoDeMaterialCreateView(CreateView) :
         form.fields['data_entrega_material'].widget = forms.DateInput(attrs={'type': 'date'})
         return form
         
-    # Defina o método form_valid na sua classe CreateView
+    # Define o método form_valid na sua classe CreateView
     def form_valid(self, form):
         """
         Caso o formulário seja válido, envie um e-mail com os dados do formulário para o responsável
         """
         send_mail(
-            subject=f"Solicitação - {form.cleaned_data['professor_responsavel']}",  # Defina o assunto do e-mail
-            message=message_producao(form.cleaned_data),  # Defina o corpo do e-mail usando a função message_producao
-            from_email=settings.EMAIL_HOST_USER,  # Defina o remetente do e-mail 
-            recipient_list=['seu@email.com']  # Defina os destinatários do e-mail
+            subject=f"Solicitação - {form.cleaned_data['professor_responsavel']}",  # Define o assunto do e-mail
+            message=message_producao(form.cleaned_data),  # Define o corpo do e-mail usando a função message_producao
+            from_email=settings.EMAIL_HOST_USER,  # Define o remetente do e-mail 
+            recipient_list=['seu@email.com']  # Define os destinatários do e-mail
         )
         
-        # Continue com o comportamento padrão do form_valid
+        # Reseta o comportamento da classe
         return super().form_valid(form)
 
 
