@@ -62,7 +62,7 @@ class ProducaoDeMaterialTests(TestCase):
 
     def test_finalidade_gravacao_failure(self):
         """
-        Verifica se ocorreu o erro ao enviar o dado  invalido de professor responsavel
+        Verifica se ocorreu o erro ao enviar o dado  invalido de finalidade de gravação
         """
         data = {**DATA, 'finalidade_gravacao': 'A'}
         # armazena o retorno da requisição post à view producao_create
