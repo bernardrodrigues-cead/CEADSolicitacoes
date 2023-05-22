@@ -75,6 +75,7 @@ class EmailSenderTest(TestCase):
         Verifica se o envio de email está funcional
         """
         
+        # envia um email para o próprio remetente
         mail.send_mail(
             subject='test email',
             message='test body',
@@ -82,10 +83,13 @@ class EmailSenderTest(TestCase):
             recipient_list=[settings.EMAIL_HOST_USER]
         )
 
+        # verifica se a caixa de saída possui um email
         self.assertEqual(len(mail.outbox), 1)
 
+        # armazena os dados do email enviado numa variável
         sent_email = mail.outbox[0]
 
+        # verifica se os dados enviados conferem com o os originais
         self.assertEqual(sent_email.subject, "test email")
         self.assertEqual(sent_email.body, "test body")
         self.assertEqual(sent_email.from_email, settings.EMAIL_HOST_USER)
