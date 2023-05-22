@@ -18,6 +18,7 @@ class ProducaoDeMaterialCreateView(CreateView) :
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
+        form.fields['data_agendamento'].widget = forms.DateInput(attrs={'type': 'date'})
         form.fields['horario_agendamento'].widget = forms.TimeInput(attrs={'type': 'time'})
         form.fields['data_entrega_material'].widget = forms.DateInput(attrs={'type': 'date'})
         return form
