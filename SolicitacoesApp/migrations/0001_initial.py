@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
                 ('arte_pronta', models.FileField(blank=True, null=True, upload_to='arte_pronta/', verbose_name='Arte para produção de material')),
                 ('criar_arte', models.BooleanField(default=False, verbose_name='Precisa criar arte?')),
                 ('setor_curso', models.CharField(max_length=100, verbose_name='Setor Curso')),
-                ('finalidade_gravacao', models.TextField(validators=[SolicitacoesApp.validators.validate_finalidade_gravacao], verbose_name='Finalidade da Gravação')),
+                ('finalidade_gravacao', models.TextField(validators=[SolicitacoesApp.validators.validate_min_30], verbose_name='Finalidade da Gravação')),
                 ('equipe_cead', models.BooleanField(verbose_name='Precisará de nossa equipe de cinegrafistas?')),
                 ('numero_participantes', models.IntegerField(choices=[(1, '1'), (2, '2'), (3, '3'), (4, '4')], verbose_name='Número de participantes')),
                 ('email', models.EmailField(max_length=254, verbose_name='E-mail')),
