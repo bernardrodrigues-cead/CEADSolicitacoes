@@ -10,7 +10,7 @@ DATA = {
     'data_entrega_material': '2023-06-06',
     'criar_arte': False,
     'setor_curso': 'Letras',
-    'finalidade_gravacao': 'Gravar',
+    'finalidade_gravacao': 'Gravar um vídeo muito bom que alegre todos os envolvidos',
     'equipe_cead': True,
     'numero_participantes': 2,
     'email': 'test@example.com',
