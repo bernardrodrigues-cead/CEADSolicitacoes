@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 
 from SolicitacoesApp.models import ProducaoDeMaterial
 
-DATA = {
+DATA = { # Constante com dados validos para comparação
     'professor_responsavel': 'Fulano de Tal',
     'horario_agendamento': '0:00',
     'duracao_gravacao': '2 horas',
@@ -49,3 +49,25 @@ class ProducaoDeMaterialTests(TestCase):
         self.client.post(reverse_lazy('producao_create'), DATA)
         # verifica a criação de um novo objeto
         self.assertEqual(ProducaoDeMaterial.objects.count(), 1)
+
+    def test_professor_responsavel_failure(self):
+        """
+        Verifica se ocorreu o erro ao enviar o dado  invalido de professor responsavel
+        """
+        data = {**DATA, 'professor_responsavel': 'A'}
+        # armazena o retorno da requisição post à view producao_create
+        response = self.client.post(reverse_lazy('producao_create'), data)
+        # verifica o status code da resposta
+        self.assertEqual(response.status_code, 200)
+
+    def test_finalidade_gravacao_failure(self):
+        """
+        Verifica se ocorreu o erro ao enviar o dado  invalido de professor responsavel
+        """
+        data = {**DATA, 'finalidade_gravacao': 'A'}
+        # armazena o retorno da requisição post à view producao_create
+        response = self.client.post(reverse_lazy('producao_create'), data)
+        # verifica o status code da resposta
+        self.assertEqual(response.status_code, 200)
+
+    
