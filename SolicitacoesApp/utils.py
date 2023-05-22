@@ -7,7 +7,7 @@ def message_producao(data: dict) -> str:
         Professor Responsável: {data['professor_responsavel']}
         Finalidade da Gravação: {data['finalidade_gravacao']}
         Horário de Agendamento: {data['horario_agendamento']}
-        Duração da Gravação: {data['duracao_gravacao']}
+        Duração da Gravação: {data['duracao_estimada']}
         Data de Entrega do Material: {data['data_entrega_material']}
         Serviços: {', '.join(data['servicos']) if 'servicos' in data else ''} 
         Arte para produção de material: {data['arte_pronta'] if 'arte_pronta' in data else ''}
