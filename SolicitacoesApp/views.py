@@ -29,8 +29,11 @@ class ProducaoDeMaterialCreateView(CreateView) :
         form.fields['horario_agendamento'].widget = forms.TimeInput(attrs={'type': 'time'})
         form.fields['data_entrega_material'].widget = forms.DateInput(attrs={'type': 'date'})
         return form
-        
-    # Define o método form_valid na sua classe CreateView
+
+    def form_invalid(self, form):
+        print(form.errors)
+        return super().form_invalid(form)
+
     def form_valid(self, form):
         """
         Caso o formulário seja válido, envie um e-mail com os dados do formulário para o responsável
@@ -44,5 +47,3 @@ class ProducaoDeMaterialCreateView(CreateView) :
         
         # Reseta o comportamento da classe
         return super().form_valid(form)
-
-
