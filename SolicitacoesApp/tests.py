@@ -7,16 +7,18 @@ from SolicitacoesApp.models import ProducaoDeMaterial
 
 DATA = { # Constante com dados aptos para validação
     'professor_responsavel': 'Fulano de Tal',
-    'horario_agendamento': '0:00',
-    'duracao_gravacao': '2 horas',
-    'data_entrega_material': '2023-06-06',
-    'criar_arte': False,
     'setor_curso': 'Letras',
-    'finalidade_gravacao': 'Gravar um vídeo muito bom que alegre todos os envolvidos',
-    'equipe_cead': True,
-    'numero_participantes': 2,
     'email': 'test@example.com',
     'telefone': '32999998888',
+    'data_agendamento': '2023-01-01',
+    'horario_agendamento': '0:00',
+    'duracao_estimada': '2 horas',
+    'data_entrega_material': '2023-01-01',
+    'criar_arte': False,
+    'finalidade_gravacao': 'Gravar um vídeo muito bom que alegre todos os envolvidos',
+    'detalhes_arte': 'Uma linda arte que envolve a magia do bom artista em seu ápice',
+    'equipe_cead': True,
+    'numero_participantes': 2,
     'observacao': ''
 }
 
