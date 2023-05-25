@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title%}CEAD Solicitações{% endblock %}
+
+{% block content %}
+
+<div class="container d-flex flex-column flex-lg-row justify-content-center align-items-center gap-5">
+    {% for item in card_info %}
+        <!-- Cards são cadastrados em SolicitacoesApp/utils.py -->
+        {% include "components/index-card.html" with titulo=item.titulo resumo=item.resumo img=item.img alt_text=item.alt_text lazy_url=item.lazy_url %}
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django import forms
 
 # Importe a função message_producao do arquivo utils.py
-from SolicitacoesApp.utils import message_producao
+from SolicitacoesApp.utils import CARD_CONTENT, message_producao
 
 # Importe os módulos necessários do Django
 from django.conf import settings
@@ -13,14 +13,14 @@ from django.core.mail import send_mail
 
 # Create your views here.
 def Index(request):
-
-    return render(request, 'SolicitacoesApp/index.html')
+    context = {'card_info': CARD_CONTENT}
+    return render(request, 'index.html', context)
 
 
 class ProducaoDeMaterialCreateView(CreateView) :
     model = ProducaoDeMaterial
     fields = '__all__'
-    template_name = 'SolicitacoesApp/producao/create.html'
+    template_name = 'producao/create.html'
     success_url = reverse_lazy('index')
 
     def get_form(self, form_class=None):

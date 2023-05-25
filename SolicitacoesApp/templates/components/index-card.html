@@ -1,0 +1,11 @@
+{% load static %}
+
+<div class="card card-index position-relative overflow-hidden" style="width: 18rem; height: 28rem">
+    <img src={% static 'assets/amarelo.png' %} class="card-background position-absolute z-0" alt="Background amarelo">
+    <img src={% static img %} class="card-img-top z-1 position-absolute" alt={{alt_text}}>
+    <div class="card-body position-absolute bottom-0">
+        <h5 class="card-title">{{titulo}}</h5>
+        <p class="card-text">{{resumo}}</p>
+        <a href={% url lazy_url%} class="btn btn-cead">Abrir solicitação</a>
+    </div>
+</div>

@@ -1,6 +1,12 @@
-from django.conf import settings
-from django.core.mail import send_mail
-from typing import List
+CARD_CONTENT = [
+    {
+        'titulo': 'Produção de Materiais',
+        'resumo': "Acessoria de comunicação, edição e gravação de vídeos, criação de artes e diagramação",
+        'img': 'assets/audiovisual.png',
+        'alt_text': 'Equipamentos de audiovisual',
+        'lazy_url': 'producao_create'
+    }   
+]
 
 def message_producao(data: dict) -> str:
     message = f'''
