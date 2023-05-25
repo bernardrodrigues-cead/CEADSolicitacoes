@@ -21,3 +21,7 @@ class ProducaoDeMaterialCreateView(CreateView) :
         form.fields['horario_agendamento'].widget = forms.TimeInput(attrs={'type': 'time'})
         form.fields['data_entrega_material'].widget = forms.DateInput(attrs={'type': 'date'})
         return form
+
+    def form_invalid(self, form) :
+        print(form.errors)
+        return super().form_invalid(form)     
