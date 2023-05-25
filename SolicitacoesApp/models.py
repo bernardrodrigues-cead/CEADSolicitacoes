@@ -25,7 +25,7 @@ class ProducaoDeMaterial(models.Model):
     )
     
     servicos = models.ManyToManyField('ServicoProducaoDeMaterial', blank=True, verbose_name='Serviços')
-    outro = models.CharField(max_length=100)
+    outro = models.CharField(max_length=100, null=True, blank=True)
     
     professor_responsavel = models.CharField(max_length=100, verbose_name='Professor Responsável', validators=[validate_professor_responsavel])
     setor_curso = models.CharField(max_length=100, verbose_name="Setor Curso")
