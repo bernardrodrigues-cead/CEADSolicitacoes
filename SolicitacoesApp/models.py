@@ -24,22 +24,26 @@ class ProducaoDeMaterial(models.Model):
         (4, '4'),
     )
     
+    servicos = models.ManyToManyField('ServicoProducaoDeMaterial', blank=True, verbose_name='Serviços')
+    outro = models.CharField(max_length=100)
+    
     professor_responsavel = models.CharField(max_length=100, verbose_name='Professor Responsável', validators=[validate_professor_responsavel])
     setor_curso = models.CharField(max_length=100, verbose_name="Setor Curso")
     email = models.EmailField(verbose_name="E-mail")
-    telefone = models.CharField(max_length=20)
-    data_agendamento = models.DateField(verbose_name='Data de Agendamento')
-    horario_agendamento = models.TimeField(verbose_name='Horário de Agendamento')
-    duracao_estimada = models.CharField(max_length=20, verbose_name='Duração da Estimada')
+    telefone = models.CharField(max_length=20, blank=True, null=True)
+    
+    data_agendamento = models.DateField(verbose_name='Data de Agendamento', blank=True, null=True)
+    horario_agendamento = models.TimeField(verbose_name='Horário de Agendamento', blank=True, null=True)
+    duracao_estimada = models.CharField(max_length=20, verbose_name='Duração da Estimada', blank=True, null=True)
     data_entrega_material = models.DateField(verbose_name='Data de Entrega do Material')
-    servicos = models.ManyToManyField('ServicoProducaoDeMaterial', blank=True, verbose_name='Serviços')
+    
     finalidade_gravacao = models.TextField(verbose_name='Finalidade da Gravação', validators=[validate_min_30])
     arte_pronta = models.FileField(upload_to='arte_pronta/', null=True, blank=True, verbose_name='Arte para produção de material')
-    detalhes_arte = models.TextField(verbose_name='Descreva sua arte aqui', blank=True, validators=[validate_min_30])
+    detalhes_arte = models.TextField(verbose_name='Descreva sua arte aqui', blank=True, null=True)
     equipamentos = models.ManyToManyField('EquipamentoProducaoDeMaterial', blank=True)
-    equipe_cead = models.BooleanField(verbose_name='Precisará de nossa equipe de cinegrafistas?')
-    numero_participantes = models.IntegerField(choices=CHOICES_PARTICIPANTES, verbose_name='Número de participantes')
-    observacao = models.CharField(max_length=255, verbose_name='Observações', blank=True)
+    equipe_cead = models.BooleanField(verbose_name='Precisará de nossa equipe de cinegrafistas?', default=False)
+    numero_participantes = models.IntegerField(choices=CHOICES_PARTICIPANTES, verbose_name='Número de participantes', null=True, blank=True)
+    observacao = models.CharField(max_length=255, verbose_name='Observações', blank=True, null=True)
 
     criado_em = models.DateTimeField(auto_now_add=True)
 
