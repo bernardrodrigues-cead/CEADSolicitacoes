@@ -10,11 +10,14 @@
         <h2>Produção de Materiais - CEAD Formulário de solicitação</h2>
         <p>Olá! Somos a equipe de produção do Cead.</p>
         <p>Trabalhamos com o apoio a professores da UFJF.</p>
-        <p>Este formulário tem o objetivo de entender se
-           sua demanda pode ser atendida pela equipe do
-           Cead UFJF</p>
+        <p>
+            Este formulário tem o objetivo de entender se
+            sua demanda pode ser atendida pela equipe do
+            Cead UFJF.
+        </p>
+    </div>
 
-       
+    <div>
         <div>
             <label>Como podemos ajudar?</label>
             {{form.servicos}}
@@ -24,89 +27,100 @@
     <div>
         <h2>Dados do solicitante</h2>
 
-       
         <div>
-            <label>Professor Responsável</label>
+            <label>Professor Responsável:</label>
             {{form.professor_responsavel}}
         </div>
 
         <div>
-            <label>Setor/Curso</label>
+            <label>Setor/Curso:</label>
             {{form.setor_curso}}
         </div>
 
         <div>
-            <label>E-mail</label>
+            <label>E-mail:</label>
             {{form.email}}
         </div>
 
         <div>
-            <label>Telefone</label>
+            <label>Telefone:</label>
             {{form.telefone}}
+        </div>
+    </div>
+
+    <div>
+        <h2>Horário Ideal</h2>
+        <p>O Cead funciona de segunda a sexta de 8h a 17h.</p>
+        <p>Qual dia e horário seriam ideais para agendar sua gravação?</p>
+        <p>(vamos verificar a disponibilidade e retornar sobre o agendamento)</p>
+       
+        <div>
+            <label>Data:</label>
+            {{form.data_agendamento}}
         </div>
 
         <div>
-            <h2>Horário Ideal</h2>
-            <p>O Cead funciona de segunda a sexta de 8h a 17h.</p>
-            <p>Qual dia e horário seriam ideais para agendar sua gravação?.</p>
-            <p>Vericaremos a disponibilidade de agendamento</p>
-    
-           
-            <div>
-                <label>Data</label>
-                {{form.data_agendamento}}
-            </div>
+            <label>Hora:</label>
+            {{form.horario_agendamento}}
+        </div>
+                
+        <div>
+            <label>Duração esperada:</label>
+            {{form.duracao_estimada}}
+        </div>
+            
+        <div>
+            <label>Data para entrega do material editado:</label>
+            {{form.data_entrega_material}}
+        </div>
+    </div>
 
-            ""
-             <div>
-                <label>Hora</label>
-                {{form.horario_agendamento}}
-            </div>
-            
-            
-            <div>
-                <label>Duração Esperada</label>
-                {{form.duracao_estimada}}
-            </div>
-            
-            <div>
-                <label>Data para entrega do material editado</label>
-                {{form.data_entrega_material}}
-            </div>
-            
-           
-            <div>
-                <label>Finalidade da Gravação</label>
-                {{ form.finalidade_gravacao }}
-            </div>
+    <div>
+        <h2>Detalhes da solicitação</h2>
+        <div>
+            <label>
+                Fale um pouco sobre o seu projeto ou disciplina.
+                Como podemos ajudar?
+            </label>
+            {{ form.finalidade_gravacao }}
+        </div>
 
-            <div>
-                <label>Arte para produção de material</label>
-                {{ form.arte_pronta }}
-            </div>
+        <div>
+            <label>
+                Já tem alguma arte pronta? Logos, slides?
+                Se sim, adicione-os aqui.
+            </label>
+            {{ form.arte_pronta }}
+        </div>
 
             <div>
-                <label>Descreva sua arte aqui</label>
+                <label>
+                    É preciso criar uma arte? Se sim,
+                    descreva como podemos ajudar.
+                </label>
                 {{ form.detalhes_arte }}
             </div>
 
             <div>
-                <label>Equipamentos</label>
+                <label>Quais equipamentos irá precisar?</label>
                 {{ form.equipamentos }}
             </div>
 
             <div>
-                <label>Precisará de nossa equipe de cinegrafistas?</label>
+                <label>
+                    Precisará de nossa equipe de cinegrafistas ou
+                    virá com sua própria equipe de produção?
+                </label>
                 {{ form.equipe_cead }}
             </div>
 
             <div>
-                <label>Número de participantes</label>
+                <label>Quantas pessoas irão participar?</label>
                 {{ form.numero_participantes }}
             </div>
 
             <div>
-                <label>Observações</label>
+                <label>Alguma observação adicional?</label>
                 {{ form.observacao }}
             </div>
         </div>
