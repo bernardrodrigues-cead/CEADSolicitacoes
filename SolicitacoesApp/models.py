@@ -37,7 +37,7 @@ class ProducaoDeMaterial(models.Model):
     duracao_estimada = models.CharField(max_length=20, verbose_name='Duração da Estimada', blank=True, null=True)
     data_entrega_material = models.DateField(verbose_name='Data de Entrega do Material')
     
-    finalidade_solicitacao = models.TextField(verbose_name='Finalidade da Solicitação', validators=[validate_min_30], null=True, blank=True)
+    finalidade_solicitacao = models.TextField(verbose_name='Finalidade da Solicitação', validators=[validate_min_30])
     arte_pronta = models.FileField(upload_to='arte_pronta/', null=True, blank=True, verbose_name='Arte para produção de material')
     detalhes_arte = models.TextField(verbose_name='Descreva sua arte aqui', blank=True, null=True)
     equipamentos = models.ManyToManyField('EquipamentoProducaoDeMaterial', blank=True)
