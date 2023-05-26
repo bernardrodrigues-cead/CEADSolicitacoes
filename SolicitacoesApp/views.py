@@ -3,13 +3,12 @@ from django.views.generic.edit import CreateView
 from .models import *
 from django.urls import reverse_lazy
 from django import forms
-
-# Importe a função message_producao do arquivo utils.py
-from SolicitacoesApp.utils import CARD_CONTENT, message_producao
-
-# Importe os módulos necessários do Django
 from django.conf import settings
 from django.core.mail import send_mail
+
+
+# Importa a função message_producao do arquivo utils.py
+from SolicitacoesApp.utils import CARD_CONTENT, message_producao
 
 # Create your views here.
 def Index(request):
@@ -28,12 +27,19 @@ class ProducaoDeMaterialCreateView(CreateView) :
         form.fields['data_agendamento'].widget = forms.DateInput(attrs={'type': 'date'})
         form.fields['horario_agendamento'].widget = forms.TimeInput(attrs={'type': 'time'})
         form.fields['data_entrega_material'].widget = forms.DateInput(attrs={'type': 'date'})
+        form.fields['servicos'] = forms.ModelMultipleChoiceField(
+            queryset=ServicoProducaoDeMaterial.objects.all(), 
+            widget=forms.CheckboxSelectMultiple,
+            required=False
+        )
+        form.fields['equipamentos'] = forms.ModelMultipleChoiceField(
+            queryset=EquipamentoProducaoDeMaterial.objects.all(), 
+            widget=forms.CheckboxSelectMultiple,
+            required=False
+        )
         return form
-
-    # def form_invalid(self, form):
-    #     print(form.errors)
-    #     return super().form_invalid(form)
-
+    
+    # Define o método form_valid na sua classe CreateView
     def form_valid(self, form):
         """
         Caso o formulário seja válido, envie um e-mail com os dados do formulário para o responsável
@@ -44,6 +50,10 @@ class ProducaoDeMaterialCreateView(CreateView) :
             from_email=settings.EMAIL_HOST_USER,  # Define o remetente do e-mail 
             recipient_list=['seu@email.com']  # Define os destinatários do e-mail
         )
-        
+
         # Reseta o comportamento da classe
         return super().form_valid(form)
+    
+    def form_invalid(self, form):
+        print(form.errors)
+        return super().form_invalid(form)
