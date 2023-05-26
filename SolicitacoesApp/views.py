@@ -6,7 +6,8 @@ from django import forms
 from django.conf import settings
 from django.core.mail import send_mail
 
-# Importe a função message_producao do arquivo utils.py
+
+# Importa a função message_producao do arquivo utils.py
 from SolicitacoesApp.utils import CARD_CONTENT, message_producao
 
 # Create your views here.
@@ -26,24 +27,15 @@ class ProducaoDeMaterialCreateView(CreateView) :
         form.fields['data_agendamento'].widget = forms.DateInput(attrs={'type': 'date'})
         form.fields['horario_agendamento'].widget = forms.TimeInput(attrs={'type': 'time'})
         form.fields['data_entrega_material'].widget = forms.DateInput(attrs={'type': 'date'})
-
         form.fields['equipamentos'] = forms.ModelMultipleChoiceField(
             queryset=EquipamentoProducaoDeMaterial.objects.all(), 
             widget=forms.CheckboxSelectMultiple
         )
-
         form.fields['servicos'] = forms.ModelMultipleChoiceField(
             queryset=ServicoProducaoDeMaterial.objects.all(), 
             widget=forms.CheckboxSelectMultiple
         )
-
         return form
-
-    def form_invalid(self, form) :
-        print(form.errors)
-
-        
-        return super().form_invalid(form)
     
     # Define o método form_valid na sua classe CreateView
     def form_valid(self, form):
