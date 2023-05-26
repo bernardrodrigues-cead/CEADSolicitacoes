@@ -3,15 +3,17 @@ from django.test import TestCase
 from django.urls import reverse_lazy
 from django.core import mail
 
-from SolicitacoesApp.models import ProducaoDeMaterial
+from SolicitacoesApp.models import ProducaoDeMaterial, ServicoProducaoDeMaterial
 
 DATA = { # Constante com dados aptos para validação
+    # 'servico': ServicoProducaoDeMaterial.objects.last(),
     'professor_responsavel': 'José da Silva',
     'setor_curso': 'Física',
     'email': 'jose@silva.com',
     'data_entrega_material': '2023-01-01',
     'finalidade_solicitacao': "Gravar um vídeo único com a equipe única que é a da produção",
-    'equipe_cead': False
+    'equipe_cead': False,
+    'numero_participantes': 1
 }
 
 # Create your tests here.

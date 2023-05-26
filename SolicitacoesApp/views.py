@@ -30,7 +30,7 @@ class ProducaoDeMaterialCreateView(CreateView) :
         form.fields['servicos'] = forms.ModelMultipleChoiceField(
             queryset=ServicoProducaoDeMaterial.objects.all(), 
             widget=forms.CheckboxSelectMultiple,
-            required=True
+            required=False
         )
         form.fields['equipamentos'] = forms.ModelMultipleChoiceField(
             queryset=EquipamentoProducaoDeMaterial.objects.all(), 
@@ -58,7 +58,3 @@ class ProducaoDeMaterialCreateView(CreateView) :
 
         # Reseta o comportamento da classe
         return super().form_valid(form)
-    
-    def form_invalid(self, form):
-        print(form.errors)
-        return super().form_invalid(form)
