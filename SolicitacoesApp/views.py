@@ -27,13 +27,15 @@ class ProducaoDeMaterialCreateView(CreateView) :
         form.fields['data_agendamento'].widget = forms.DateInput(attrs={'type': 'date'})
         form.fields['horario_agendamento'].widget = forms.TimeInput(attrs={'type': 'time'})
         form.fields['data_entrega_material'].widget = forms.DateInput(attrs={'type': 'date'})
-        form.fields['equipamentos'] = forms.ModelMultipleChoiceField(
-            queryset=EquipamentoProducaoDeMaterial.objects.all(), 
-            widget=forms.CheckboxSelectMultiple
-        )
         form.fields['servicos'] = forms.ModelMultipleChoiceField(
             queryset=ServicoProducaoDeMaterial.objects.all(), 
-            widget=forms.CheckboxSelectMultiple
+            widget=forms.CheckboxSelectMultiple,
+            required=False
+        )
+        form.fields['equipamentos'] = forms.ModelMultipleChoiceField(
+            queryset=EquipamentoProducaoDeMaterial.objects.all(), 
+            widget=forms.CheckboxSelectMultiple,
+            required=False
         )
         return form
     
@@ -51,3 +53,7 @@ class ProducaoDeMaterialCreateView(CreateView) :
 
         # Reseta o comportamento da classe
         return super().form_valid(form)
+    
+    def form_invalid(self, form):
+        print(form.errors)
+        return super().form_invalid(form)

@@ -6,20 +6,12 @@ from django.core import mail
 from SolicitacoesApp.models import ProducaoDeMaterial
 
 DATA = { # Constante com dados aptos para validação
-    'professor_responsavel': 'Fulano de Tal',
-    'setor_curso': 'Letras',
-    'email': 'test@example.com',
-    'telefone': '32999998888',
-    'data_agendamento': '2023-01-01',
-    'horario_agendamento': '0:00',
-    'duracao_estimada': '2 horas',
+    'professor_responsavel': 'José da Silva',
+    'setor_curso': 'Física',
+    'email': 'jose@silva.com',
     'data_entrega_material': '2023-01-01',
-    'criar_arte': False,
-    'finalidade_gravacao': 'Gravar um vídeo muito bom que alegre todos os envolvidos',
-    'detalhes_arte': 'Uma linda arte que envolve a magia do bom artista em seu ápice',
-    'equipe_cead': True,
-    'numero_participantes': 2,
-    'observacao': ''
+    'finalidade_solicitacao': "Gravar um vídeo único com a equipe única que é a da produção",
+    'equipe_cead': False
 }
 
 # Create your tests here.
@@ -65,7 +57,7 @@ class ProducaoDeMaterialTests(TestCase):
         """
         Verifica se ocorreu o erro ao enviar o dado  invalido de finalidade de gravação
         """
-        data = {**DATA, 'finalidade_gravacao': 'A'}
+        data = {**DATA, 'finalidade_solicitacao': 'A'}
         # armazena o retorno da requisição post à view producao_create
         response = self.client.post(reverse_lazy('producao_create'), data)
         # verifica o status code da resposta
