@@ -1,5 +1,7 @@
 # Create your models here.
 from django.db import models
+
+from SolicitacoesApp.utils import CHOICES_EQUIPE_CEAD, CHOICES_PARTICIPANTES
 from .validators import validate_professor_responsavel, validate_min_30
 
 
@@ -16,14 +18,6 @@ class EquipamentoProducaoDeMaterial(models.Model):
         return self.nome
 
 class ProducaoDeMaterial(models.Model):
-   
-    CHOICES_PARTICIPANTES = (
-        (1, '1'),
-        (2, '2'),
-        (3, '3'),
-        (4, '4'),
-    )
-    
     servicos = models.ManyToManyField('ServicoProducaoDeMaterial', blank=True, verbose_name='Serviços')
     outro = models.CharField(max_length=100, null=True, blank=True)
     
@@ -41,9 +35,9 @@ class ProducaoDeMaterial(models.Model):
     arte_pronta = models.FileField(upload_to='arte_pronta/', null=True, blank=True, verbose_name='Arte para produção de material')
     detalhes_arte = models.TextField(verbose_name='Descreva sua arte aqui', blank=True, null=True)
     equipamentos = models.ManyToManyField('EquipamentoProducaoDeMaterial', blank=True)
-    equipe_cead = models.BooleanField(verbose_name='Precisará de nossa equipe de cinegrafistas?', default=False)
+    equipe_cead = models.BooleanField(verbose_name='Precisará de nossa equipe de cinegrafistas?', default=False, choices=CHOICES_EQUIPE_CEAD)
     numero_participantes = models.IntegerField(choices=CHOICES_PARTICIPANTES, verbose_name='Número de participantes', null=True, blank=True)
-    observacao = models.CharField(max_length=255, verbose_name='Observações', blank=True, null=True)
+    observacao = models.TextField(verbose_name='Observações', blank=True, null=True)
 
     criado_em = models.DateTimeField(auto_now_add=True)
 

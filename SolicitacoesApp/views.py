@@ -30,11 +30,16 @@ class ProducaoDeMaterialCreateView(CreateView) :
         form.fields['servicos'] = forms.ModelMultipleChoiceField(
             queryset=ServicoProducaoDeMaterial.objects.all(), 
             widget=forms.CheckboxSelectMultiple,
-            required=False
+            required=True
         )
         form.fields['equipamentos'] = forms.ModelMultipleChoiceField(
             queryset=EquipamentoProducaoDeMaterial.objects.all(), 
             widget=forms.CheckboxSelectMultiple,
+            required=False
+        )
+        form.fields['numero_participantes'] = forms.ChoiceField(
+            choices=CHOICES_PARTICIPANTES, 
+            widget=forms.RadioSelect, 
             required=False
         )
         return form

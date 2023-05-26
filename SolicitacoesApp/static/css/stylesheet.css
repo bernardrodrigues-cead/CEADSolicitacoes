@@ -40,3 +40,16 @@
 .card-index:hover > .card-img-top{
     transform: translateX(-50%) scale(1.1);
 }
+
+.main-form div{
+    border-top-color: var(--red-cead);
+    border-top-width: 4px;
+}
+
+.required{
+    color: var(--red-cead);
+}
+
+input[type='date'], input[type='time']{
+    width: 12rem;
+}
