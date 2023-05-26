@@ -37,6 +37,11 @@ class ProducaoDeMaterialCreateView(CreateView) :
             widget=forms.CheckboxSelectMultiple,
             required=False
         )
+        form.fields['numero_participantes'] = forms.ChoiceField(
+            choices=CHOICES_PARTICIPANTES, 
+            widget=forms.RadioSelect, 
+            required=False
+        )
         return form
     
     # Define o método form_valid na sua classe CreateView
@@ -53,7 +58,3 @@ class ProducaoDeMaterialCreateView(CreateView) :
 
         # Reseta o comportamento da classe
         return super().form_valid(form)
-    
-    def form_invalid(self, form):
-        print(form.errors)
-        return super().form_invalid(form)

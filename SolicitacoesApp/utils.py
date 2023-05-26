@@ -1,5 +1,3 @@
-from SolicitacoesApp.models import ServicoProducaoDeMaterial, EquipamentoProducaoDeMaterial
-
 CARD_CONTENT = [
     {
         'titulo': 'Produção de Materiais',
@@ -9,6 +7,18 @@ CARD_CONTENT = [
         'lazy_url': 'producao_create'
     }   
 ]
+
+CHOICES_PARTICIPANTES = (
+    (1, '1'),
+    (2, '2'),
+    (3, '3'),
+    (4, '4'),
+)
+
+CHOICES_EQUIPE_CEAD = (
+    (False, 'Não, iremos utilizar a nossa própria equipe'),
+    (True, 'Sim, precisaremos da equipe do CEAD')
+)
 
 def message_producao(data: dict) -> str:
         # Serviços: {', '.join(data['servicos']) if 'servicos' in data else ''} 
