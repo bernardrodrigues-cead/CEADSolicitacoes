@@ -11,11 +11,11 @@ from django.template.loader import render_to_string
 dotenv.load_dotenv()
 
 # Importa a função message_producao do arquivo utils.py
-from SolicitacoesApp.utils import CARD_CONTENT
+from SolicitacoesApp.utils import CARD_CONTENT_PRODUCAO
 
 # Create your views here.
 def Index(request):
-    context = {'card_info': CARD_CONTENT}
+    context = {'card_info': CARD_CONTENT_PRODUCAO}
     return render(request, 'index.html', context)
 
 
