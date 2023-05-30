@@ -1,9 +1,10 @@
 function hideFields(){
-    $('#id_data_agendamento').parent().hide();
-    $('#id_horario_agendamento').parent().hide();
-    $('#id_duracao_estimada').parent().hide();
-    $('#id_equipamentos').parent().hide();
-    $('#id_equipe_cead').parent().hide();
+    $('#id_data_agendamento').val("").parent().hide();
+    $('#id_horario_agendamento').val("").parent().hide();
+    $('#id_duracao_estimada').val("").parent().hide();
+    $('#id_equipamentos').val("").parent().hide();
+    $('#id_equipe_cead').val("False").parent().hide();
+    $('#id_numero_participantes_0').prop("checked", true);
     $('#id_numero_participantes').parent().hide()
 }
 

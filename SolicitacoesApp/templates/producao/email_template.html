@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Estilos */
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Abertura de Solicitação - Produção</h1>
+    
+    <p><span>Serviços: </span></p>
+    <ul>
+        {% for servico in data.servicos %}
+        <li>{{servico.nome}}</li>
+        {% endfor %}
+        
+        {% if data.outro %}
+        <li>{{outro}}</li>
+        {% endif %}
+    </ul>
+    
+    <p><span>Professor Responsável: </span>{{data.professor_responsavel}}</p>
+    
+    <p><span>Setor Curso: </span>{{data.setor_curso}}</p>
+    
+    <p><span>E-mail: </span>{{data.email}}</p>
+
+    {% if data.telefone %}
+    <p><span>Telefone: </span>{{data.telefone}}</p>
+    {% endif %}
+
+    {% if data.data_agendamento%}
+    <p><span>Data de Agendamento: </span>{{data.data_agendamento|date:'d/m/Y'}}</p>
+    {% endif%}
+    
+    {% if data.horario_agendamento %}
+    <p><span>Horário de Agendamento: </span>{{data.horario_agendamento|date:'H:i'}}</p>
+    {% endif %}
+    
+    {% if data.duracao_estimada %}
+    <p><span>Duração Estimada da Gravação: </span>{{data.duracao_estimada}}</p>
+    {% endif %}
+
+    <p><span>Data de Entrega do Material: </span>{{data.data_entrega_material}}</p>
+
+    <p><span>Finalidade da Solicitação: </span>{{data.finalidade_solicitacao}}</p>
+
+    {% if data.arte_pronta %}
+    <p>Arte para produção de material segue em anexo</p>
+    {% endif %}
+
+    {% if data.detalhes_arte %}
+    <p><span>Detalhes da arte: </span>{{data.detalhes_arte}}</p>
+    {% endif %}
+
+    
+    {% if data.equipamentos %}
+    <p><span>Equipamentos: </span></p>
+    {% endif %}
+    <ul>
+        {% for equipamento in data.equipamentos %}
+        <li>{{equipamento.nome}}</li>
+        {% endfor %}
+    </ul>
+
+    <p><span>Precisará de nossa equipe de cinegrafistas? </span>{% if data.equipe_cead %}Sim{% else %}Não{% endif %}</p>
+
+    <p><span>Número de participantes: </span>{{data.numero_participantes}}</p>
+
+    {% if data.observacao %}
+    <p><span>Observações: </span>{{data.observacao}}</p>
+    {% endif %}
+</body>
+</html>
