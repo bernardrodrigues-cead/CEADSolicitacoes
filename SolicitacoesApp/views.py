@@ -7,6 +7,7 @@ from django import forms
 from django.conf import settings
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
+from django.core.exceptions import ValidationError
 
 dotenv.load_dotenv()
 
@@ -53,6 +54,11 @@ class ProducaoDeMaterialCreateView(CreateView) :
         """
         Caso o formulário seja válido, envie um e-mail com os dados do formulário para o responsável
         """
+        # Verifica se foi preenchido o campo data_agendamento e data_entrega_material
+        if form.cleaned_data['data_agendamento'] and form.cleaned_data['data_entrega_material']:
+            # Verifica se a data de entrega do material é posterior à data de agendamento
+            if form.cleaned_data['data_entrega_material'] <= form.cleaned_data['data_agendamento']:
+                raise ValidationError('A data de entrega do material precisa ser posterior à data de agendamento da gravação.')
 
         form.save()
         
