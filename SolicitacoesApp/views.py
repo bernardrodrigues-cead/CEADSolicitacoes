@@ -1,3 +1,4 @@
+import os, dotenv
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
 from .models import *
@@ -7,9 +8,10 @@ from django.conf import settings
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 
+dotenv.load_dotenv()
 
 # Importa a função message_producao do arquivo utils.py
-from SolicitacoesApp.utils import CARD_CONTENT, EMAIL_PRODUCAO
+from SolicitacoesApp.utils import CARD_CONTENT
 
 # Create your views here.
 def Index(request):
@@ -58,7 +60,7 @@ class ProducaoDeMaterialCreateView(CreateView) :
         # message=message_producao(form.cleaned_data)  # Define o corpo do e-mail usando a função message_producao
         message = render_to_string('producao/email_template.html', {'data': form.cleaned_data})
         from_email=settings.EMAIL_HOST_USER  # Define o remetente do e-mail 
-        recipient_list=[EMAIL_PRODUCAO]  # Define os destinatários do e-mail
+        recipient_list=[os.getenv('EMAIL_PRODUCAO')]  # Define os destinatários do e-mail
 
         email = EmailMessage(subject, message, from_email, recipient_list)
 
@@ -71,7 +73,3 @@ class ProducaoDeMaterialCreateView(CreateView) :
 
         # Reseta o comportamento da classe
         return super().form_valid(form)
-    
-    def form_invalid(self, form):
-        print(form.errors)
-        return super().form_invalid(form)

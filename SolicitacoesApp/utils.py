@@ -20,5 +20,3 @@ CHOICES_EQUIPE_CEAD = (
     (False, 'Não, iremos utilizar a nossa própria equipe'),
     (True, 'Sim, precisaremos da equipe do CEAD')
 )
-
-EMAIL_PRODUCAO = 'bernard.rodrigues@uab.ufjf.br'
