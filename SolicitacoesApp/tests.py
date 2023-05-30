@@ -2,7 +2,7 @@ from django.conf import settings
 from django.test import TestCase
 from django.urls import reverse_lazy
 from django.core import mail
-
+from django.utils import timezone
 from SolicitacoesApp.models import ProducaoDeMaterial, ServicoProducaoDeMaterial
 
 DATA = { # Constante com dados aptos para validação
@@ -10,7 +10,7 @@ DATA = { # Constante com dados aptos para validação
     'professor_responsavel': 'José da Silva',
     'setor_curso': 'Física',
     'email': 'jose@silva.com',
-    'data_entrega_material': '2023-01-01',
+    'data_entrega_material': (timezone.now() + timezone.timedelta(days=1)).strftime('%Y-%m-%d'),
     'finalidade_solicitacao': "Gravar um vídeo único com a equipe única que é a da produção",
     'equipe_cead': False,
     'numero_participantes': 1
@@ -65,12 +65,23 @@ class ProducaoDeMaterialTests(TestCase):
         # verifica o status code da resposta
         self.assertEqual(response.status_code, 200)
 
+    def test_past_data_agendamento_failure(self):
+        """
+        Test_past_data_agendamento_failure: O formulário envia uma data de agendamento no passado 
+        (geralmente um dia) e verifica se o status code da requisição é 200, indicando erro no envio.
+        """
+        data = {**DATA, 'data_agendamento': timezone.now() - timezone.timedelta(days=1)}
+
+        response = self.client.post(reverse_lazy('producao_create'), data)
+
+        self.assertEqual(response.status_code, 200)
+        
 class EmailSenderTest(TestCase):
     def test_email_sending(self):
         """
         Verifica se o envio de email está funcional
         """
-        
+
         # envia um email para o próprio remetente
         mail.send_mail(
             subject='test email',
