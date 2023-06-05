@@ -2,7 +2,7 @@
 from django.db import models
 
 from SolicitacoesApp.utils import CHOICES_EQUIPE_CEAD, CHOICES_PARTICIPANTES
-from .validators import validate_professor_responsavel, validate_min_30
+from .validators import validate_professor_responsavel, validate_min_30, validate_data_futuro, validate_horario_agendamento
 
 
 class ServicoProducaoDeMaterial(models.Model):
@@ -26,10 +26,10 @@ class ProducaoDeMaterial(models.Model):
     email = models.EmailField(verbose_name="E-mail")
     telefone = models.CharField(max_length=20, blank=True, null=True)
     
-    data_agendamento = models.DateField(verbose_name='Data de Agendamento', blank=True, null=True)
-    horario_agendamento = models.TimeField(verbose_name='Horário de Agendamento', blank=True, null=True)
+    data_agendamento = models.DateField(verbose_name='Data de Agendamento', blank=True, null=True, validators=[validate_data_futuro])
+    horario_agendamento = models.TimeField(verbose_name='Horário de Agendamento', blank=True, null=True, validators=[validate_horario_agendamento])
     duracao_estimada = models.CharField(max_length=20, verbose_name='Duração da Estimada', blank=True, null=True)
-    data_entrega_material = models.DateField(verbose_name='Data de Entrega do Material')
+    data_entrega_material = models.DateField(verbose_name='Data de Entrega do Material', validators=[validate_data_futuro])
     
     finalidade_solicitacao = models.TextField(verbose_name='Finalidade da Solicitação', validators=[validate_min_30])
     arte_pronta = models.FileField(upload_to='arte_pronta/', null=True, blank=True, verbose_name='Arte para produção de material')
