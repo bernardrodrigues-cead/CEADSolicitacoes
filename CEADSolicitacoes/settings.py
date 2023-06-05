@@ -26,10 +26,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
+debug = os.getenv('DEBUG') == 'True'
 
-ALLOWED_HOSTS = []
+DEBUG = debug
 
+ALLOWED_HOSTS = [] if debug else [os.getenv('ALLOWED_HOSTS')]
 
 # Application definition
 
@@ -77,7 +78,7 @@ WSGI_APPLICATION = 'CEADSolicitacoes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if os.getenv('DEBUG'):
+if debug:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -133,11 +134,11 @@ USE_TZ = True
 
 STATIC_URL = '/servicos/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') if os.getenv('DEBUG') else os.getenv('STATIC_ROOT')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') if debug else os.getenv('STATIC_ROOT')
 
 MEDIA_URL = '/servicos/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') if os.getenv('DEBUG') else os.getenv('MEDIA_ROOT')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') if debug else os.getenv('MEDIA_ROOT')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'SolicitacoesApp/static')
@@ -150,7 +151,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
 EMAIL_HOST = os.getenv('EMAIL_HOST')
-EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS') == 'True'
 EMAIL_PORT = os.getenv('EMAIL_PORT')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
