@@ -1,0 +1,49 @@
+name: Run Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Set up environment variables
+        run: |
+            if [[ -n "${GITHUB_ACTIONS}" ]]; then
+                SECRET_KEY=$SECRET_KEY
+                DEBUG=$DEBUG
+                EMAIL_BACKEND=$EMAIL_BACKEND
+                EMAIL_HOST=$EMAIL_HOST
+                EMAIL_USE_TLS=$EMAIL_USE_TLS
+                EMAIL_PORT=$EMAIL_PORT
+                EMAIL_HOST_USER=$EMAIL_HOST_USER
+                EMAIL_HOST_PASSWORD=$EMAIL_HOST_PASSWORD
+            fi
+
+      - name: Run tests
+        run: python manage.py test SolicitacoesApp
+
+env:
+    SECRET_KEY: ${{ secrets.SECRET_KEY }}
+    DEBUG: ${{ secrets.DEBUG }}
+    EMAIL_BACKEND: ${{ secrets.EMAIL_BACKEND }}
+    EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
+    EMAIL_USE_TLS: ${{ secrets.EMAIL_USE_TLS }}
+    EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
+    EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
+    EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}

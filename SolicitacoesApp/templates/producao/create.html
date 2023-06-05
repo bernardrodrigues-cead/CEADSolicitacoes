@@ -1,0 +1,132 @@
+
+{% extends 'base.html' %}
+
+{% block title%}Create{% endblock%}
+
+{% block content %}
+<form class="main-form container w-50 mb-5" method="post" enctype="multipart/form-data">{% csrf_token %}
+    <!-- Usar a estrutura a seguir para cada bloco -->
+    <div>
+        <h2>Produção de Materiais - CEAD Formulário de solicitação</h2>
+        <p>Olá! Somos a equipe de produção do Cead.</p>
+        <p>Trabalhamos com o apoio a professores da UFJF.</p>
+        <p>
+            Este formulário tem o objetivo de entender se
+            sua demanda pode ser atendida pela equipe do
+            Cead UFJF.
+        </p>
+    </div>
+
+    <div>
+        <div>
+            <label for="id_servicos">Como podemos ajudar?</label>
+            {{form.servicos}}
+            {{form.outro}}
+        </div>
+    </div>
+
+    <div>
+        <h2>Dados do solicitante</h2>
+
+        <div>
+            <label for="id_professor_responsavel">Professor Responsável:</label>
+            {{form.professor_responsavel}}
+        </div>
+
+        <div>
+            <label for="id_setor_curso">Setor/Curso:</label>
+            {{form.setor_curso}}
+        </div>
+
+        <div>
+            <label for="id_email">E-mail:</label>
+            {{form.email}}
+        </div>
+
+        <div>
+            <label for="id_telefone">Telefone:</label>
+            {{form.telefone}}
+        </div>
+    </div>
+
+    <div>
+        <h2>Prazo</h2>
+        <p>O Cead funciona de segunda a sexta de 8:30h às 17h.</p>
+        <p>Qual dia e horário seriam ideais para agendar sua gravação?</p>
+        <p>(vamos verificar a disponibilidade e retornar sobre o agendamento)</p>
+       
+        <div>
+            <label for="id_data_agendamento">Data:</label>
+            {{form.data_agendamento}}
+        </div>
+
+        <div>
+            <label for="id_horario_agendamento">Hora:</label>
+            {{form.horario_agendamento}}
+        </div>
+                
+        <div>
+            <label for="id_duracao_estimada">Duração esperada:</label>
+            {{form.duracao_estimada}}
+        </div>
+            
+        <div>
+            <label for="id_data_entrega_material">Data para entrega do material editado:</label>
+            {{form.data_entrega_material}}
+        </div>
+    </div>
+
+    <div>
+        <h2>Detalhes da solicitação</h2>
+        <div>
+            <label for="id_finalidade_solicitacao">
+                Fale um pouco sobre o seu projeto ou disciplina.
+                Como podemos ajudar?
+            </label>
+            {{ form.finalidade_solicitacao }}
+        </div>
+
+        <div>
+            <label for="id_arte_pronta">
+                Já tem alguma arte pronta? Logos, slides?
+                Se sim, adicione-os aqui.
+            </label>
+            {{ form.arte_pronta }}
+        </div>
+
+        <div>
+            <label for="id_detalhes_arte">
+                É preciso criar uma arte? Se sim,
+                descreva como podemos ajudar.
+            </label>
+            {{ form.detalhes_arte }}
+        </div>
+
+        <div>
+            <label for="id_equipamentos">Quais equipamentos irá precisar?</label>
+            {{ form.equipamentos }}
+        </div>
+
+        <div>
+            <label for="id_equipe_cead">
+                Precisará de nossa equipe de cinegrafistas ou
+                virá com sua própria equipe de produção?
+            </label>
+            {{ form.equipe_cead }}
+        </div>
+
+        <div>
+            <label for="id_numero_participantes">Quantas pessoas irão participar?</label>
+            {{ form.numero_participantes }}
+        </div>
+
+        <div>
+            <label for="id_observacao">Alguma observação adicional?</label>
+            {{ form.observacao }}
+        </div>
+    </div>
+    {% include 'components/submit-button.html' %}
+</form>
+{% endblock %}
+
+
