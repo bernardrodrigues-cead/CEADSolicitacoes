@@ -53,3 +53,9 @@
 input[type='date'], input[type='time']{
     width: 12rem;
 }
+
+@media (min-width: 992px) {
+    .main-form {
+        width: 50% !important;
+    }
+}
