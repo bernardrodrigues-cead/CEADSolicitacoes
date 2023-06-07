@@ -1,0 +1,30 @@
+{%extends "base.html" %}
+{% load static %}
+{% block title %} Página não encontrada {% endblock %}
+{% block content %} 
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container-fluid {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .container-fluid div {
+        text-align: center;
+    }
+</style>
+
+<div class="container-fluid">
+    <div>
+        <h1>Erro 404</h1>
+        <h3>Página não encontrada</h3>
+        <img src="{% static './assets/404.png' %}" />
+    </div>
+</div> {% endblock %}

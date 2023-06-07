@@ -8,6 +8,7 @@ from django.conf import settings
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.core.exceptions import ValidationError
+from django.http import HttpResponseNotFound 
 
 dotenv.load_dotenv()
 
@@ -79,3 +80,6 @@ class ProducaoDeMaterialCreateView(CreateView) :
 
         # Reseta o comportamento da classe
         return super().form_valid(form)
+    
+def Error404View(request, exception):
+    return HttpResponseNotFound(render(request, 'errors/404.html', status=404))

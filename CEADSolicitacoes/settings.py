@@ -30,7 +30,7 @@ debug = os.getenv('DEBUG') == 'True'
 
 DEBUG = debug
 
-ALLOWED_HOSTS = [] if debug else [os.getenv('ALLOWED_HOSTS')]
+ALLOWED_HOSTS = ['*'] 
 
 # Application definition
 
@@ -89,11 +89,11 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv('NAME'),
-            'USER': os.getenv('USER'),
-            'PASSWORD': os.getenv('PASSWORD'),
-            'HOST': os.getenv('HOST'),
-            'POST': os.getenv('POST'),
+            'NAME': os.getenv('DB_NAME'),
+            'USER': os.getenv('DB_USER'),
+            'PASSWORD': os.getenv('DB_PASSWORD'),
+            'HOST': os.getenv('DB_HOST'),
+            'POST': os.getenv('DB_POST'),
         }
     }
 
@@ -134,7 +134,7 @@ USE_TZ = True
 
 STATIC_URL = '/servicos/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') if debug else os.getenv('STATIC_ROOT')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/servicos/media/'
 
