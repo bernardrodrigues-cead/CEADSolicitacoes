@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('outro', models.CharField(blank=True, max_length=100, null=True)),
-                ('professor_responsavel', models.CharField(max_length=100, validators=[SolicitacoesApp.validators.validate_professor_responsavel], verbose_name='Professor Responsável')),
+                ('professor_responsavel', models.CharField(max_length=100, validators=[SolicitacoesApp.validators.validate_nome_completo], verbose_name='Professor Responsável')),
                 ('setor_curso', models.CharField(max_length=100, verbose_name='Setor Curso')),
                 ('email', models.EmailField(max_length=254, verbose_name='E-mail')),
                 ('telefone', models.CharField(blank=True, max_length=20, null=True)),
