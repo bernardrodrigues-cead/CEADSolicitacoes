@@ -133,7 +133,7 @@ USE_TZ = True
 
 STATIC_URL = '/servicos/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') if debug else os.getenv('STATIC_ROOT')
 
 MEDIA_URL = '/servicos/media/'
 

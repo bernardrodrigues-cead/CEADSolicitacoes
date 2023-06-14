@@ -81,5 +81,5 @@ class ProducaoDeMaterialCreateView(CreateView) :
         # Reseta o comportamento da classe
         return super().form_valid(form)
     
-def Error404View(request, exception):
+def Error404View(request, *arg):
     return HttpResponseNotFound(render(request, 'errors/404.html', status=404))
