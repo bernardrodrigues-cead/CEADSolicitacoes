@@ -29,7 +29,7 @@ debug = os.getenv('DEBUG') == 'True'
 
 DEBUG = debug
 
-ALLOWED_HOSTS = ['*'] 
+ALLOWED_HOSTS = [] if debug else [os.getenv('ALLOWED_HOSTS')]
 
 # Application definition
 
