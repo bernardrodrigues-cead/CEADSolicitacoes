@@ -29,7 +29,7 @@ debug = os.getenv('DEBUG') == 'True'
 
 DEBUG = debug
 
-ALLOWED_HOSTS = [] if debug else [os.getenv('ALLOWED_HOSTS')]
+ALLOWED_HOSTS = ['*'] #if debug else [os.getenv('ALLOWED_HOSTS')]
 
 # Application definition
 
@@ -133,11 +133,11 @@ USE_TZ = True
 
 STATIC_URL = '/servicos/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') if debug else os.getenv('STATIC_ROOT')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #if debug else os.getenv('STATIC_ROOT')
 
 MEDIA_URL = '/servicos/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') if debug else os.getenv('MEDIA_ROOT')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #if debug else os.getenv('MEDIA_ROOT')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'SolicitacoesApp/static')
