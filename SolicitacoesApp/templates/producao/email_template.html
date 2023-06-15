@@ -78,7 +78,9 @@
 
     <p><span>Precisará de nossa equipe de cinegrafistas? </span>{% if data.equipe_cead %}Sim{% else %}Não{% endif %}</p>
 
+    {% if data.numero_participantes > 0 %}
     <p><span>Número de participantes: </span>{{data.numero_participantes}}</p>
+    {% endif %}
 
     {% if data.observacao %}
     <p><span>Observações: </span>{{data.observacao}}</p>

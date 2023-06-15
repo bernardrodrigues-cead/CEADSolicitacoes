@@ -67,7 +67,7 @@ class ProducaoDeMaterialCreateView(CreateView) :
         # message=message_producao(form.cleaned_data)  # Define o corpo do e-mail usando a função message_producao
         message = render_to_string('producao/email_template.html', {'data': form.cleaned_data})
         from_email=settings.EMAIL_HOST_USER  # Define o remetente do e-mail 
-        recipient_list=[os.getenv('EMAIL_PRODUCAO')]  # Define os destinatários do e-mail
+        recipient_list=[os.getenv('EMAIL_TESTES') if os.getenv('DEBUG') == 'True' else os.getenv('EMAIL_PRODUCAO')]  # Define os destinatários do e-mail
 
         email = EmailMessage(subject, message, from_email, recipient_list)
 
