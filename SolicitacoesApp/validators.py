@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError
 from datetime import datetime
 
-def validate_professor_responsavel(value):
+def validate_nome_completo(value):
     """Verifica se a string contém dois ou mais palavras com dois ou mais caracteres 
 
     Args:
@@ -45,3 +45,9 @@ def validate_horario_agendamento(value):
     # Verifica se o horário de agendamento está entre 8:30 e 17:00
     if value and (value < datetime.strptime('8:30', '%H:%M').time() or value > datetime.strptime('17:00', '%H:%M').time()):
         raise ValidationError('O horário de agendamento precisa estar entre 8:30 e 17:00.')
+    
+def validate_cpf(value):
+    # Filtra os simbolos dos caracteres e verifica se o valor tem 11 digitos  
+    value = ''.join(filter(str.isdigit, value))
+    if len(value) != 11:
+        raise ValidationError(_('CPF inválido.'))

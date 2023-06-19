@@ -2,8 +2,7 @@
 from django.db import models
 
 from SolicitacoesApp.utils import CHOICES_EQUIPE_CEAD, CHOICES_PARTICIPANTES
-from .validators import validate_professor_responsavel, validate_min_30, validate_data_futuro, validate_horario_agendamento
-
+from .validators import validate_min_30, validate_data_futuro, validate_horario_agendamento, validate_nome_completo, validate_cpf
 
 class ServicoProducaoDeMaterial(models.Model):
     nome = models.CharField(max_length=100)
@@ -21,7 +20,7 @@ class ProducaoDeMaterial(models.Model):
     servicos = models.ManyToManyField('ServicoProducaoDeMaterial', blank=True, verbose_name='Serviços')
     outro = models.CharField(max_length=100, null=True, blank=True)
     
-    professor_responsavel = models.CharField(max_length=100, verbose_name='Professor Responsável', validators=[validate_professor_responsavel])
+    professor_responsavel = models.CharField(max_length=100, verbose_name='Professor Responsável', validators=[validate_nome_completo])
     setor_curso = models.CharField(max_length=100, verbose_name="Setor Curso")
     email = models.EmailField(verbose_name="E-mail")
     telefone = models.CharField(max_length=20, blank=True, null=True)
@@ -43,3 +42,40 @@ class ProducaoDeMaterial(models.Model):
 
     def __str__(self):
         return f"Produção de Material-{self.professor_responsavel}"
+
+class DadosSolicitante(models.Model):
+    curso = models.CharField(max_length=100)
+    coordenador = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.curso
+
+
+class DadosPreposto(models.Model):
+    cpf = models.CharField(max_length=11, validators=[validate_cpf])
+    rg = models.CharField(max_length=20)
+    filiacao_mae = models.CharField(max_length=100)
+    filiacao_pai = models.CharField(max_length=100, blank=True, null=True)
+    agencia = models.CharField(max_length=50)
+    conta_corrente = models.CharField(max_length=50)
+    banco = models.CharField(max_length=50)
+    endereco_logradouro = models.CharField(max_length=100)
+    endereco_numero = models.CharField(max_length=20)
+    endereco_bairro = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.cpf
+
+
+class Viagem(models.Model):
+    cidade = models.CharField(max_length=100)
+    logradouro = models.CharField(max_length=100)
+    numero = models.CharField(max_length=20)
+    bairro = models.CharField(max_length=100)
+    data_saida = models.DateField()
+    data_retorno = models.DateField()
+    objetivo_viagem = models.CharField(max_length=200)
+    outras_informacoes = models.CharField(max_length=200, blank=True, null=True)
+
+    def __str__(self):
+        return self.cidade    
