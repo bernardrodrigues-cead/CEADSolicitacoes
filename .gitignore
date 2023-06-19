@@ -1,11 +1,12 @@
 env
 .env
 
-__pycache__
+__pycache__/
 *.pyc
 
 *.sqlite3
 
 media
 arte_pronta
-staticfiles
+
+staticfiles/

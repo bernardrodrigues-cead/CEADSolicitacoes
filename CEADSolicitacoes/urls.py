@@ -19,7 +19,6 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import handler404
-from SolicitacoesApp.views import Error404View
 
 urlpatterns = [
     path('servicos/admin/', admin.site.urls),
@@ -28,4 +27,5 @@ urlpatterns = [
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-handler404 = Error404View
+
+handler404 = 'SolicitacoesApp.views.Error404View'
