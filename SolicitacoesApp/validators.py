@@ -50,4 +50,4 @@ def validate_cpf(value):
     # Filtra os simbolos dos caracteres e verifica se o valor tem 11 digitos  
     value = ''.join(filter(str.isdigit, value))
     if len(value) != 11:
-        raise ValidationError(_('CPF inválido.'))
+        raise ValidationError(('CPF inválido.'))
