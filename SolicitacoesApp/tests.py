@@ -101,3 +101,21 @@ class EmailSenderTest(TestCase):
         self.assertEqual(sent_email.body, "test body")
         self.assertEqual(sent_email.from_email, settings.EMAIL_HOST_USER)
         self.assertEqual(sent_email.to, [settings.EMAIL_HOST_USER])
+
+# class DadosPrepostoTest(TestCase):
+#     DADOS = {
+#         'cpf' : '08710804609',
+#         'rg' : '454332313',
+#         'filiacao_mae' : 'Genoveva Martins',
+#         'filiacao_pai' : 'Seu carlos',
+#         'agencia' : '54342',
+#         'conta_corrente' : '2424124',
+#         'banco' : '212121122',
+#         'endereco_logradouro' : 'saasassasasas',
+#         'endereco_numero' : 111,
+#         'endereco_bairro' : 'Triângulo',
+#         'complemento' : 'fodase',
+#     }
+ 
+#     def test_cpf(self):
+#         self.client.post()     

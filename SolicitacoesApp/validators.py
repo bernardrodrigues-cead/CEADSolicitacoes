@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from datetime import datetime
+from validate_docbr import CPF
 
 def validate_nome_completo(value):
     """Verifica se a string contém dois ou mais palavras com dois ou mais caracteres 
@@ -48,6 +49,6 @@ def validate_horario_agendamento(value):
     
 def validate_cpf(value):
     # Filtra os simbolos dos caracteres e verifica se o valor tem 11 digitos  
-    value = ''.join(filter(str.isdigit, value))
-    if len(value) != 11:
-        raise ValidationError(('CPF inválido.'))
+    doc_cpf = CPF()
+    if not doc_cpf.validate(value):
+        raise ValidationError('CPF inválido')

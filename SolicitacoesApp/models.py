@@ -56,22 +56,24 @@ class DadosPreposto(models.Model):
     rg = models.CharField(max_length=20)
     filiacao_mae = models.CharField(max_length=100)
     filiacao_pai = models.CharField(max_length=100, blank=True, null=True)
-    agencia = models.CharField(max_length=50)
-    conta_corrente = models.CharField(max_length=50)
-    banco = models.CharField(max_length=50)
-    endereco_logradouro = models.CharField(max_length=100)
-    endereco_numero = models.CharField(max_length=20)
-    endereco_bairro = models.CharField(max_length=100)
+    agencia = models.CharField(max_length=15)
+    conta_corrente = models.CharField(max_length=15)
+    banco = models.CharField(max_length=15)
+    endereco_logradouro = models.CharField(max_length=30)
+    endereco_numero = models.IntegerField()
+    endereco_bairro = models.CharField(max_length=20)
+    complemento = models.CharField(max_length=40, blank=True, null=True)
 
     def __str__(self):
         return self.cpf
 
 
 class Viagem(models.Model):
-    cidade = models.CharField(max_length=100)
-    logradouro = models.CharField(max_length=100)
-    numero = models.CharField(max_length=20)
-    bairro = models.CharField(max_length=100)
+    cidade = models.CharField(max_length=20)
+    logradouro = models.CharField(max_length=30)
+    numero = models.IntegerField()
+    bairro = models.CharField(max_length=20)
+    complemento = models.CharField(max_length=40)
     data_saida = models.DateField()
     data_retorno = models.DateField()
     objetivo_viagem = models.CharField(max_length=200)
