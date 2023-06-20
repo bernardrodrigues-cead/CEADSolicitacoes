@@ -83,3 +83,10 @@ class ProducaoDeMaterialCreateView(CreateView) :
     
 def Error404View(request, exception):
     return HttpResponseNotFound(render(request, 'errors/404.html', status=404))
+
+
+class ViagemCreateView(CreateView):
+    model = Viagem
+    template_name = "viagem/create.html"
+    fields=['cidade','data_saida', 'data_retorno','objetivo_viagem','outras_informacoes']
+    sucess_url = reverse_lazy('viagem_create')
