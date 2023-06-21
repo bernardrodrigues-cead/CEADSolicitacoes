@@ -10,10 +10,10 @@ from django.template.loader import render_to_string
 from django.core.exceptions import ValidationError
 from django.http import HttpResponseNotFound 
 
-dotenv.load_dotenv()
-
 # Importa a função message_producao do arquivo utils.py
 from SolicitacoesApp.utils import CARD_CONTENT_PRODUCAO
+
+dotenv.load_dotenv()
 
 # Create your views here.
 def Index(request):
