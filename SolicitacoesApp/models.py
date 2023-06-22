@@ -43,41 +43,52 @@ class ProducaoDeMaterial(models.Model):
     def __str__(self):
         return f"Produção de Material-{self.professor_responsavel}"
 
-class DadosSolicitante(models.Model):
-    curso = models.CharField(max_length=100)
-    coordenador = models.CharField(max_length=100)
 
-    def __str__(self):
-        return self.curso
-
-
-class DadosPreposto(models.Model):
+class DadosDoPreposto(models.Model):
+    nome = models.CharField(max_length=100)
     cpf = models.CharField(max_length=11, validators=[validate_cpf])
     rg = models.CharField(max_length=20)
+    
     filiacao_mae = models.CharField(max_length=100)
     filiacao_pai = models.CharField(max_length=100, blank=True, null=True)
+    
     agencia = models.CharField(max_length=15)
     conta_corrente = models.CharField(max_length=15)
     banco = models.CharField(max_length=15)
-    endereco_logradouro = models.CharField(max_length=30)
-    endereco_numero = models.IntegerField()
-    endereco_bairro = models.CharField(max_length=20)
-    complemento = models.CharField(max_length=40, blank=True, null=True)
+    
+    logradouro = models.CharField(max_length=100)
+    numero = models.IntegerField()
+    complemento = models.CharField(max_length=100, blank=True, null=True)
+    bairro = models.CharField(max_length=100)
+    cidade = models.CharField(max_length=100)
+    UF = models.CharField(max_length=2)
 
     def __str__(self):
-        return self.cpf
+        return self.nome
 
-
-class Viagem(models.Model):
-    cidade = models.CharField(max_length=20)
-    logradouro = models.CharField(max_length=30)
+class DadosDaViagem(models.Model):
+    logradouro = models.CharField(max_length=100)
     numero = models.IntegerField()
-    bairro = models.CharField(max_length=20)
-    complemento = models.CharField(max_length=40)
+    complemento = models.CharField(max_length=100, blank=True, null=True)
+    bairro = models.CharField(max_length=100)
+    cidade = models.CharField(max_length=100)
+    UF = models.CharField(max_length=2)
+
     data_saida = models.DateField()
     data_retorno = models.DateField()
+    
     objetivo_viagem = models.CharField(max_length=200)
     outras_informacoes = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self):
         return self.cidade    
+
+class Viagens(models.Model):
+    curso = models.CharField(max_length=100)
+    coordenador = models.CharField(max_length=100)
+
+    preposto = models.ForeignKey(DadosDoPreposto, on_delete=models.SET_NULL, null=True)
+    dados_da_viagem = models.ForeignKey(DadosDaViagem, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return self.curso

@@ -1,4 +1,4 @@
-CARD_CONTENT_PRODUCAO = [
+CARD_CONTENT = [
     {
         'titulo': 'Produção de Materiais',
         'resumo': "Assessoria de comunicação, edição e gravação de vídeos, criação de artes e diagramação",
@@ -10,10 +10,33 @@ CARD_CONTENT_PRODUCAO = [
         'titulo': 'Administração',
         'resumo': "Pagamento de bolsas, desvinculação de bolsistas, viagens e diárias, almoxarifado e gráfica.",
         'img': 'assets/Adm.png',
-        'alt_text': 'Ônibus de viagens',
-        'lazy_url': 'producao_create'
+        'alt_text': 'Pastas de documentos',
+        'lazy_url': 'administracao',
     }
 ]
+
+SUBMENUS = {
+    'administracao': [
+        {
+            'nome': 'Pagamento de Bolsas',
+            'lazy_url': 'viagens_create',
+        },
+        {
+            'nome': 'Desvinculação de bolsista, pedido de bolsas a mais ou pedido de lote complementar',
+            'lazy_url': 'viagens_create',
+        },
+        {
+            'nome': 'Viagens e diárias',
+            'lazy_url': 'viagens_create',
+        },
+        {
+            'nome': 'Almoxarifado e gráfica',
+            'lazy_url': 'viagens_create',
+        },
+        
+    ]
+}
+
 
 CHOICES_PARTICIPANTES = (
     (0, '0'),

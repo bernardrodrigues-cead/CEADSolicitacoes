@@ -11,13 +11,15 @@ from django.core.exceptions import ValidationError
 from django.http import HttpResponseNotFound 
 
 # Importa a função message_producao do arquivo utils.py
-from SolicitacoesApp.utils import CARD_CONTENT_PRODUCAO
+from SolicitacoesApp.utils import CARD_CONTENT, SUBMENUS
+
+dotenv.load_dotenv()
 
 dotenv.load_dotenv()
 
 # Create your views here.
 def Index(request):
-    context = {'card_info': CARD_CONTENT_PRODUCAO}
+    context = {'card_info': CARD_CONTENT}
     return render(request, 'index.html', context)
 
 
@@ -81,12 +83,14 @@ class ProducaoDeMaterialCreateView(CreateView) :
         # Reseta o comportamento da classe
         return super().form_valid(form)
     
+class ViagensCreateView(CreateView):
+    model = Viagens
+    template_name = 'administracao/viagens/create.html'
+    fields='__all__'
+    sucess_url = reverse_lazy('viagens_create')
+
+def MenuAdministracao(request):
+    return render(request,'administracao/menu.html', SUBMENUS)
+
 def Error404View(request, exception):
     return HttpResponseNotFound(render(request, 'errors/404.html', status=404))
-
-
-class ViagemCreateView(CreateView):
-    model = Viagem
-    template_name = "viagem/create.html"
-    fields=['cidade','data_saida', 'data_retorno','objetivo_viagem','outras_informacoes']
-    sucess_url = reverse_lazy('viagem_create')

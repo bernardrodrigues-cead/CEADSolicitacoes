@@ -31,9 +31,6 @@
 
 /* .card-img-top{
     width: 80% !important;
-    left: 50%;
-    top: 5%;
-    transform: translateX(-50%);
     transition: transform 0.5s ease-in-out;
 } */
 
@@ -53,6 +50,34 @@
 
 .required{
     color: var(--red-cead);
+}
+
+.bg-cead{
+    background: var(--red-cead);
+}
+
+.bg-ceadYellow{
+    background: var(--yellow-cead)
+}
+
+.menu-link:hover{
+    cursor: pointer;
+}
+
+.menu-link p{
+    transition: transform 0.3s;
+}
+
+.menu-link:hover p{
+    transform: translateX(1rem);
+}
+
+.menu-link div{
+    transition: transform 0.3s;
+}
+
+.menu-link:hover div{
+    transform: translate(10px, 10px);
 }
 
 input[type='date'], input[type='time']{
