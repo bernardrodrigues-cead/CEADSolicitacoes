@@ -1,1 +1,9 @@
-{{form}}
+{% extends 'base.html' %}
+
+{% block title %}Solicitação - Viagens e Diárias{% endblock %}
+
+{% block content %}
+    {{form}}
+    
+    {% include 'components/submit-button.html' %}
+{% endblock %}
