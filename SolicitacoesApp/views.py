@@ -15,6 +15,8 @@ from SolicitacoesApp.utils import CARD_CONTENT, SUBMENUS
 
 dotenv.load_dotenv()
 
+dotenv.load_dotenv()
+
 # Create your views here.
 def Index(request):
     context = {'card_info': CARD_CONTENT}

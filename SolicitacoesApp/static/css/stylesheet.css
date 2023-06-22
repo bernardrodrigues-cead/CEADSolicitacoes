@@ -29,6 +29,11 @@
     transform: translateX(-50%) scale(1.2);
 }
 
+/* .card-img-top{
+    width: 80% !important;
+    transition: transform 0.5s ease-in-out;
+} */
+
 .card-img-top{
     width: 80% !important;
     transition: transform 0.5s ease-in-out;

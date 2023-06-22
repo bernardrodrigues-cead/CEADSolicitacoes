@@ -4,7 +4,7 @@ CARD_CONTENT = [
         'resumo': "Assessoria de comunicação, edição e gravação de vídeos, criação de artes e diagramação",
         'img': 'assets/audiovisual.png',
         'alt_text': 'Equipamentos de audiovisual',
-        'lazy_url': 'producao_create',
+        'lazy_url': 'producao_create'
     },
     {
         'titulo': 'Administração',
