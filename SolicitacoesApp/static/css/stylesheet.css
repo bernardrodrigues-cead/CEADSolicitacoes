@@ -29,16 +29,21 @@
     transform: translateX(-50%) scale(1.2);
 }
 
-.card-img-top{
+/* .card-img-top{
     width: 80% !important;
     left: 50%;
     top: 5%;
     transform: translateX(-50%);
     transition: transform 0.5s ease-in-out;
+} */
+
+.card-img-top{
+    width: 80% !important;
+    transition: transform 0.5s ease-in-out;
 }
 
-.card-index:hover > .card-img-top{
-    transform: translateX(-50%) scale(1.1);
+.card-index:hover div .card-img-top{
+    transform: scale(1.1);
 }
 
 .main-form div{

@@ -5,7 +5,14 @@ CARD_CONTENT_PRODUCAO = [
         'img': 'assets/audiovisual.png',
         'alt_text': 'Equipamentos de audiovisual',
         'lazy_url': 'producao_create'
-    }   
+    },
+    {
+        'titulo': 'Administração',
+        'resumo': "Pagamento de bolsas, desvinculação de bolsistas, viagens e diárias, almoxarifado e gráfica.",
+        'img': 'assets/Adm.png',
+        'alt_text': 'Ônibus de viagens',
+        'lazy_url': 'producao_create'
+    }
 ]
 
 CHOICES_PARTICIPANTES = (
