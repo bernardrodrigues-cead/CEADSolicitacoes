@@ -1,17 +1,18 @@
 import os, dotenv
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
+
+from SolicitacoesApp.forms import DadosDaViagemForm, DadosDoPrepostoForm
 from .models import *
 from django.urls import reverse_lazy
 from django import forms
 from django.conf import settings
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
-from django.core.exceptions import ValidationError
-from django.http import HttpResponseNotFound 
+from django.http import HttpResponseNotFound
 
 # Importa a função message_producao do arquivo utils.py
-from SolicitacoesApp.utils import CARD_CONTENT, SUBMENUS
+from SolicitacoesApp.utils import CARD_CONTENT, ERROR_MESSAGES, SUBMENUS
 
 dotenv.load_dotenv()
 
@@ -61,7 +62,8 @@ class ProducaoDeMaterialCreateView(CreateView) :
         if form.cleaned_data['data_agendamento'] and form.cleaned_data['data_entrega_material']:
             # Verifica se a data de entrega do material é posterior à data de agendamento
             if form.cleaned_data['data_entrega_material'] <= form.cleaned_data['data_agendamento']:
-                raise ValidationError('A data de entrega do material precisa ser posterior à data de agendamento da gravação.')
+                form.add_error(None, ERROR_MESSAGES['entrega_lt_agendamento'])
+                return self.form_invalid(form)
 
         form.save()
         
@@ -78,7 +80,7 @@ class ProducaoDeMaterialCreateView(CreateView) :
             email.attach(file.name, file.read(), file.content_type)
 
         email.content_subtype = 'html'
-        email.send()        
+        email.send()
 
         # Reseta o comportamento da classe
         return super().form_valid(form)
@@ -86,8 +88,69 @@ class ProducaoDeMaterialCreateView(CreateView) :
 class ViagensCreateView(CreateView):
     model = Viagens
     template_name = 'administracao/viagens/create.html'
-    fields='__all__'
-    sucess_url = reverse_lazy('viagens_create')
+    fields=['curso', 'coordenador']
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form_preposto'] = DadosDoPrepostoForm()
+        context['form_viagem'] = DadosDaViagemForm()
+        return context
+    
+    def form_valid(self, form):
+        form_preposto = DadosDoPrepostoForm(self.request.POST)
+        form_viagem = DadosDaViagemForm(self.request.POST)
+        
+        if form_preposto.is_valid() and form_viagem.is_valid():
+            if form_viagem.cleaned_data['data_retorno'] <= form_viagem.cleaned_data['data_saida']:
+                form.add_error(None, ERROR_MESSAGES['retorno_lt_saida'])
+                return self.form_invalid(form)
+               
+            
+            new_preposto = DadosDoPreposto.objects.create(
+                nome=form_preposto.cleaned_data['nome'],
+                cpf=form_preposto.cleaned_data['cpf'],
+                rg=form_preposto.cleaned_data['rg'],
+                filiacao_1=form_preposto.cleaned_data['filiacao_1'],
+                filiacao_2=form_preposto.cleaned_data['filiacao_2'],
+                banco=form_preposto.cleaned_data['banco'],
+                agencia=form_preposto.cleaned_data['agencia'],
+                conta_corrente=form_preposto.cleaned_data['conta_corrente'],
+                preposto_logradouro=form_preposto.cleaned_data['preposto_logradouro'],
+                preposto_numero=form_preposto.cleaned_data['preposto_numero'],
+                preposto_complemento=form_preposto.cleaned_data['preposto_complemento'],
+                preposto_bairro=form_preposto.cleaned_data['preposto_bairro'],
+                preposto_cidade=form_preposto.cleaned_data['preposto_cidade'],
+                preposto_UF=form_preposto.cleaned_data['preposto_UF']
+            )
+            new_dados_da_viagem = DadosDaViagem.objects.create(
+                logradouro=form_viagem.cleaned_data['logradouro'],
+                numero=form_viagem.cleaned_data['numero'],
+                complemento=form_viagem.cleaned_data['complemento'],
+                bairro=form_viagem.cleaned_data['bairro'],
+                cidade=form_viagem.cleaned_data['cidade'],
+                UF=form_viagem.cleaned_data['UF'],
+                data_saida=form_viagem.cleaned_data['data_saida'],
+                data_retorno=form_viagem.cleaned_data['data_retorno'],
+                objetivo_viagem=form_viagem.cleaned_data['objetivo_viagem'],
+                outras_informacoes=form_viagem.cleaned_data['outras_informacoes']
+            )
+
+            new_viagens = form.save(commit=False)
+            new_viagens.preposto = new_preposto
+            new_viagens.dados_da_viagem = new_dados_da_viagem
+            
+            new_preposto.save()
+            new_dados_da_viagem.save()
+            new_viagens.save()
+
+        else:
+            errors = [form_preposto.errors, form_viagem.errors]
+            form.add_error(None, errors)
+            return self.form_invalid(form)
+            
+        return super().form_valid(form)
+            
 
 def MenuAdministracao(request):
     return render(request,'administracao/menu.html', SUBMENUS)

@@ -49,19 +49,19 @@ class DadosDoPreposto(models.Model):
     cpf = models.CharField(max_length=11, validators=[validate_cpf])
     rg = models.CharField(max_length=20)
     
-    filiacao_mae = models.CharField(max_length=100)
-    filiacao_pai = models.CharField(max_length=100, blank=True, null=True)
+    filiacao_1 = models.CharField(max_length=100)
+    filiacao_2 = models.CharField(max_length=100, blank=True, null=True)
     
+    banco = models.CharField(max_length=15)
     agencia = models.CharField(max_length=15)
     conta_corrente = models.CharField(max_length=15)
-    banco = models.CharField(max_length=15)
     
-    logradouro = models.CharField(max_length=100)
-    numero = models.IntegerField()
-    complemento = models.CharField(max_length=100, blank=True, null=True)
-    bairro = models.CharField(max_length=100)
-    cidade = models.CharField(max_length=100)
-    UF = models.CharField(max_length=2)
+    preposto_logradouro = models.CharField(max_length=100)
+    preposto_numero = models.IntegerField()
+    preposto_complemento = models.CharField(max_length=100, blank=True, null=True)
+    preposto_bairro = models.CharField(max_length=100)
+    preposto_cidade = models.CharField(max_length=100)
+    preposto_UF = models.CharField(max_length=2)
 
     def __str__(self):
         return self.nome
@@ -74,11 +74,11 @@ class DadosDaViagem(models.Model):
     cidade = models.CharField(max_length=100)
     UF = models.CharField(max_length=2)
 
-    data_saida = models.DateField()
-    data_retorno = models.DateField()
+    data_saida = models.DateField(validators=[validate_data_futuro])
+    data_retorno = models.DateField(validators=[validate_data_futuro])
     
-    objetivo_viagem = models.CharField(max_length=200)
-    outras_informacoes = models.CharField(max_length=200, blank=True, null=True)
+    objetivo_viagem = models.TextField(blank=False, null=False)
+    outras_informacoes = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.cidade    

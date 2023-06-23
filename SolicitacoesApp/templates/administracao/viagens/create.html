@@ -3,7 +3,142 @@
 {% block title %}Solicitação - Viagens e Diárias{% endblock %}
 
 {% block content %}
-    {{form}}
-    
-    {% include 'components/submit-button.html' %}
+    <form class="main-form container mb-5" method="post" enctype="multipart/form-data">{% csrf_token %}
+        <div>
+            <h2>Viagens e Diárias - Formulário de solicitação</h2>
+            <p>Olá! Somos a equipe de administração do Cead.</p>
+            <p>Trabalhamos com o apoio a professores da UFJF.</p>
+            <p>
+                Este formulário tem o objetivo de entender se
+                sua demanda pode ser atendida pela equipe do
+                Cead UFJF.
+            </p>
+        </div>
+        
+        <div>
+            <h2>Dados do curso</h2>
+            <div>
+                <label for="id_curso">Curso</label>
+                {{form.curso}}
+            </div>
+            <div>
+                <label for="id_coordenador">Coordenador</label>
+                {{form.coordenador}}
+            </div>
+        </div>
+
+        <div>
+            <h2>Dados do usuário (preposto)</h2>
+            <div>
+                <label for="id_nome">Nome</label>
+                {{form_preposto.nome}}
+            </div>
+            <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center gap-2">
+                <label for="id_cpf">CPF</label>
+                {{form_preposto.cpf}}
+            
+                <label for="id_rg">RG</label>
+                {{form_preposto.rg}}
+            </div>
+            <div>
+                <label for="id_filiacao_1">Filiação 1</label>
+                {{form_preposto.filiacao_1}}
+            </div>
+            <div>
+                <label for="id_filiacao_2">Filiação 2</label>
+                {{form_preposto.filiacao_2}}
+            </div>
+
+            <div>
+                <label for="id_preposto_logradouro">Logradouro</label>
+                {{form_preposto.preposto_logradouro}}
+            </div>
+
+            <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center gap-2">
+                <label for="id_preposto_numero">Número</label>
+                {{form_preposto.preposto_numero}}
+
+                <label for="id_preposto_complemento">Complemento</label>
+                {{form_preposto.preposto_complemento}}
+            </div>
+
+            <div>
+                <label for="id_preposto_bairro">Bairro</label>
+                {{form_preposto.preposto_bairro}}
+            </div>
+
+            <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center gap-2">
+                <label for="id_preposto_cidade">Cidade</label>
+                {{form_preposto.preposto_cidade}}
+
+                <label for="id_preposto_UF">UF</label>
+                {{form_preposto.preposto_UF}}
+            </div>
+        </div>
+
+        <div>
+            <h2>Dados bancários</h2>
+            <div>
+                <label for="id_banco">Banco</label>
+                {{form_preposto.banco}}
+            </div>
+            <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center gap-2">
+                <label for="id_agencia">Agência</label>
+                {{form_preposto.agencia}}
+            
+                <label for="id_conta_corrente">Conta</label>
+                {{form_preposto.conta_corrente}}
+            </div>
+        </div>
+
+        <div>
+            <h2>Dados da viagem</h2>
+            <div>
+                <label for="id_logradouro">Logradouro</label>
+                {{form_viagem.logradouro}}
+            </div>
+
+            <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center gap-2">
+                <label for="id_numero">Número</label>
+                {{form_viagem.numero}}
+
+                <label for="id_complemento">Complemento</label>
+                {{form_viagem.complemento}}
+            </div>
+
+            <div>
+                <label for="id_bairro">Bairro</label>
+                {{form_viagem.bairro}}
+            </div>
+
+            <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center gap-2">
+                <label for="id_cidade">Cidade</label>
+                {{form_viagem.cidade}}
+
+                <label for="id_UF">UF</label>
+                {{form_viagem.UF}}
+            </div>
+
+            <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center gap-2">
+                <label for="id_data_saida">Data de saída</label>
+                {{form_viagem.data_saida}}
+
+                <label for="id_data_retorno">Data de retorno</label>
+                {{form_viagem.data_retorno}}
+            </div>
+
+            <div>
+                <label for="id_objetivo_viagem">Objetivo da viagem</label>
+                {{form_viagem.objetivo_viagem}}
+            </div>
+
+            <div>
+                <label for="id_outras_informacoes">Outras informações</label>
+                {{form_viagem.outras_informacoes}}
+            </div>
+        </div>
+        
+        {% include 'components/submit-button.html' %}
+    </form>
+
 {% endblock %}
