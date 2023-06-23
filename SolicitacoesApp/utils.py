@@ -68,3 +68,13 @@ EQUIPAMENTOS_PRODUCAO = (
     'Slide', 
     'Teleprompter'
 )
+
+ERROR_MESSAGES = {
+    'entrega_lt_agendamento': 'A data de entrega do material precisa ser posterior à data de agendamento da gravação.',
+    'cpf': 'Informe um CPF válido.',
+    'horario_agendamento': 'O horário de agendamento precisa estar entre 8:30 e 17:00.',
+    'data_no_passado': 'A data de agendamento precisa ser no futuro',
+    'min_caracteres': 'O campo deve conter pelo menos 30 caracteres.',
+    'nome_invalido': 'Nome inválido (Preencha o nome completo).',
+    'retorno_lt_saida': 'A data de retorno precisa ser posterior à data de saída.'
+}
