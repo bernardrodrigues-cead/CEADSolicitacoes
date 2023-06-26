@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Estilos */
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #444;
+        }
+        p {
+            color: #666;
+        }
+        span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Abertura de Solicitação - Administração - Viagens e Diárias</h1>
+    
+    <h2>Dados do curso</h2>
+
+    <p><span>Curso: </span>{{data.curso}}</p>
+
+    <p><span>Coordenador: </span>{{data.coordenador}}</p>
+
+    <p><span></span></p>
+
+    
+    <h2>Dados do usuário (preposto)</h2>
+
+    <p><span>Nome: </span>{{data.nome}}</p>
+
+    <p><span>CPF: </span>{{data.cpf}}</p>
+
+    <p><span>RG: </span>{{data.rg}}</p>
+
+    <p><span>Filiação 1: </span>{{data.filiacao_1}}</p>
+
+    {% if data.filiacao_2 %}
+    <p><span>Filiação 2: </span>{{data.filiacao_2}}</p>
+    {% endif %}
+
+    <p><span>Logradouro: </span>{{data.preposto_logradouro}}</p>
+
+    <p><span>Número: </span>{{data.preposto_numero}}</p>
+
+    {% if data.preposto_complemento %}
+    <p><span>Complemento: </span>{{data.preposto_complemento}}</p>
+    {% endif %}
+
+    <p><span>Bairro: </span>{{data.preposto_bairro}}</p>
+
+    <p><span>Cidade: </span>{{data.preposto_cidade}}</p>
+
+    <p><span>UF: </span>{{data.preposto_UF}}</p>
+
+    
+    <h2>Dados Bancários</h2>
+
+    <p><span>Banco: </span>{{data.banco}}</p>
+
+    <p><span>Agência: </span>{{data.agencia}}</p>
+
+    <p><span>Conta Corrente: </span>{{data.conta}}</p>
+
+
+    <h2>Dados da Viagem</h2>
+
+    <p><span>Logradouro: </span>{{data.logradouro}}</p>
+
+    <p><span>Número: </span>{{data.numero}}</p>
+
+    {% if data.complemento %}
+    <p><span>Complemento: </span>{{data.complemento}}</p>
+    {% endif %}
+
+    <p><span>Bairro: </span>{{data.bairro}}</p>
+
+    <p><span>Cidade: </span>{{data.cidade}}</p>
+
+    <p><span>UF: </span>{{data.UF}}</p>
+
+    <p><span>Data de Saída: </span>{{data.data_saida}}</p>
+
+    <p><span>Data de Retorno: </span>{{data.data_retorno}}</p>
+
+    <p><span>Objetivo da Viagem: </span>{{data.objetivo_viagem}}</p>
+
+    {% if data.outras_informacoes %}
+    <p><span>Outras Informações: </span>{{data.outras_informacoes}}</p>
+    {% endif %}
+</body>
+</html>

@@ -15,4 +15,6 @@ class DadosDaViagemForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['data_saida'].widget = forms.DateInput(attrs={'type': 'date'})
+        self.fields['horario_saida'].widget = forms.TimeInput(attrs={'type': 'time'})
         self.fields['data_retorno'].widget = forms.DateInput(attrs={'type': 'date'})
+        self.fields['horario_retorno'].widget = forms.TimeInput(attrs={'type': 'time'})
