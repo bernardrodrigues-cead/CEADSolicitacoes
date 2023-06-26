@@ -91,7 +91,7 @@ else:
             'NAME': os.getenv('DB_NAME'),
             'USER': os.getenv('DB_USER'),
             'PASSWORD': os.getenv('DB_PASSWORD'),
-            'HOST': os.getenv('DB_HOST'),
+            'HOST': os.getenv('DB_HOST_DEBUG') if debug else os.getenv('DB_HOST'),
             'POST': os.getenv('DB_POST'),
         }
     }

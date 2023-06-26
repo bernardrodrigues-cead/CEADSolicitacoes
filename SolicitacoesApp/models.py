@@ -52,7 +52,7 @@ class DadosDoPreposto(models.Model):
     filiacao_1 = models.CharField(max_length=100)
     filiacao_2 = models.CharField(max_length=100, blank=True, null=True)
     
-    banco = models.CharField(max_length=15)
+    banco = models.CharField(max_length=100)
     agencia = models.CharField(max_length=15)
     conta_corrente = models.CharField(max_length=15)
     
@@ -75,7 +75,9 @@ class DadosDaViagem(models.Model):
     UF = models.CharField(max_length=2)
 
     data_saida = models.DateField(validators=[validate_data_futuro])
+    horario_saida = models.TimeField()
     data_retorno = models.DateField(validators=[validate_data_futuro])
+    horario_retorno = models.TimeField()
     
     objetivo_viagem = models.TextField(blank=False, null=False)
     outras_informacoes = models.TextField(blank=True, null=True)
@@ -84,6 +86,7 @@ class DadosDaViagem(models.Model):
         return self.cidade    
 
 class Viagens(models.Model):
+    email = models.EmailField()
     curso = models.CharField(max_length=100)
     coordenador = models.CharField(max_length=100)
 

@@ -16,8 +16,6 @@ from SolicitacoesApp.utils import CARD_CONTENT, ERROR_MESSAGES, SUBMENUS
 
 dotenv.load_dotenv()
 
-dotenv.load_dotenv()
-
 # Create your views here.
 def Index(request):
     context = {'card_info': CARD_CONTENT}
@@ -88,7 +86,7 @@ class ProducaoDeMaterialCreateView(CreateView) :
 class ViagensCreateView(CreateView):
     model = Viagens
     template_name = 'administracao/viagens/create.html'
-    fields=['curso', 'coordenador']
+    fields=['curso', 'coordenador', 'email']
     success_url = reverse_lazy('index')
 
     def get_context_data(self, **kwargs):
@@ -131,7 +129,9 @@ class ViagensCreateView(CreateView):
                 cidade=form_viagem.cleaned_data['cidade'],
                 UF=form_viagem.cleaned_data['UF'],
                 data_saida=form_viagem.cleaned_data['data_saida'],
+                horario_saida=form_viagem.cleaned_data['horario_saida'],
                 data_retorno=form_viagem.cleaned_data['data_retorno'],
+                horario_retorno=form_viagem.cleaned_data['horario_retorno'],
                 objetivo_viagem=form_viagem.cleaned_data['objetivo_viagem'],
                 outras_informacoes=form_viagem.cleaned_data['outras_informacoes']
             )
@@ -143,6 +143,20 @@ class ViagensCreateView(CreateView):
             new_preposto.save()
             new_dados_da_viagem.save()
             new_viagens.save()
+
+            subject=f"Solicitação - {form.cleaned_data['curso']}"  # Define o assunto do e-mail
+            message = render_to_string('administracao/viagens/email_template.html', {'data': {
+                **form.cleaned_data,
+                **form_preposto.cleaned_data,
+                **form_viagem.cleaned_data
+            }})
+            from_email=settings.EMAIL_HOST_USER  # Define o remetente do e-mail 
+            recipient_list=[os.getenv('EMAIL_TESTES') if os.getenv('DEBUG') == 'True' else os.getenv('EMAIL_VIAGENS')]  # Define os destinatários do e-mail
+
+            email = EmailMessage(subject, message, from_email, recipient_list)
+
+            email.content_subtype = 'html'
+            email.send()
 
         else:
             errors = [form_preposto.errors, form_viagem.errors]

@@ -19,6 +19,7 @@ DATA = { # Constante com dados aptos para validação
     'viagens': {
         'curso': 'Física',
         'coordenador': 'José da Silva',
+        'email': 'jose@silva.com',
         'nome': 'José da Silva',
         'cpf': '00000000191',
         'rg': 'SP-1916283',
@@ -45,7 +46,9 @@ DATA = { # Constante com dados aptos para validação
         'UF': 'MT',
 
         'data_saida': (timezone.now() + timezone.timedelta(days=1)).strftime('%Y-%m-%d'),
+        'horario_saida': '10:00',
         'data_retorno': (timezone.now() + timezone.timedelta(days=2)).strftime('%Y-%m-%d'),
+        'horario_retorno': '10:00',
         
         'objetivo_viagem': 'Viajar com os outros professores que vão',
         'outras_informacoes': ''
