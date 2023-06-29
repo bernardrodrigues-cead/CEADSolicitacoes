@@ -95,3 +95,30 @@ class Viagens(models.Model):
 
     def __str__(self):
         return self.curso
+
+class SolicitacaoAlmoxarifadoGrafica(models.Model):
+    solicitante = models.CharField(max_length=50)
+    departamento_curso = models.CharField(max_length=50)
+    email = models.EmailField()
+    data_criacao = models.DateField(auto_now=True)
+
+class MaterialConsumo(models.Model):
+    material_solicitado = models.CharField(max_length=50)
+    quantidade = models.IntegerField()
+    observacoes = models.TextField(null=True)
+    solicitacao = models.ForeignKey(SolicitacaoAlmoxarifadoGrafica, on_delete=models.CASCADE)
+
+class ImpressaoProvasApostilas(models.Model):
+    arquivo = models.FileField()
+    quantidade_provas_apostilas = models.IntegerField()
+    separar_por_polos = models.BooleanField(default=False)
+    localizacao_polo = models.CharField(max_length=50, null=True)
+    observacoes = models.TextField(null=True)
+    solicitacao = models.ForeignKey(SolicitacaoAlmoxarifadoGrafica, on_delete=models.CASCADE)
+
+class CortePapel(models.Model):
+    altura_papel_mm = models.IntegerField()
+    largura_papel_mm = models.IntegerField()
+    quantidade = models.IntegerField()
+    observacoes = models.TextField(null=True)
+    solicitacao = models.ForeignKey(SolicitacaoAlmoxarifadoGrafica, on_delete=models.CASCADE)        
