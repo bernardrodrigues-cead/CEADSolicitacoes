@@ -98,27 +98,27 @@ class Viagens(models.Model):
 
 class SolicitacaoAlmoxarifadoGrafica(models.Model):
     solicitante = models.CharField(max_length=100)
-    departamento_curso = models.CharField(max_length=100)
+    departamento_curso = models.CharField(max_length=100, verbose_name="Departamento/Curso")
     email = models.EmailField()
-    data_criacao = models.DateField(auto_now=True)
+    data_criacao = models.DateField(auto_now=True, verbose_name="Data Criação")
 
 class MaterialConsumo(models.Model):
     material_solicitado = models.CharField(max_length=100)
     quantidade = models.IntegerField()
-    observacoes = models.TextField(null=True)
-    solicitacao = models.ForeignKey(SolicitacaoAlmoxarifadoGrafica, on_delete=models.CASCADE)
+    observacoes = models.TextField(null=True, verbose_name="Observações")
+    solicitacao = models.ForeignKey(SolicitacaoAlmoxarifadoGrafica, on_delete=models.CASCADE, verbose_name="Solicitação")
 
 class ImpressaoProvasApostilas(models.Model):
-    arquivo = models.FileField()
-    quantidade_provas_apostilas = models.IntegerField()
-    separar_por_polos = models.BooleanField(default=False)
-    localizacao_polo = models.CharField(max_length=100, null=True)
-    observacoes = models.TextField(null=True)
-    solicitacao = models.ForeignKey(SolicitacaoAlmoxarifadoGrafica, on_delete=models.CASCADE)
+    arquivo = models.FileField(upload_to="arte_pronta")
+    quantidade_provas_apostilas = models.IntegerField(verbose_name="Quantidade de Provas/Apostilas")
+    separar_por_polos = models.BooleanField(default=False, verbose_name="Separar por Pólos?")
+    localizacao_polo = models.CharField(max_length=100, null=True, verbose_name="Localização do Polo")
+    observacoes = models.TextField(null=True, verbose_name="Observações")
+    solicitacao = models.ForeignKey(SolicitacaoAlmoxarifadoGrafica, on_delete=models.CASCADE, verbose_name="Solicitação")
 
 class CortePapel(models.Model):
-    altura_papel_mm = models.IntegerField()
-    largura_papel_mm = models.IntegerField()
+    altura_papel_mm = models.IntegerField(verbose_name="Altura do Papel (mm)")
+    largura_papel_mm = models.IntegerField(verbose_name="Largura do Papel(mm)")
     quantidade = models.IntegerField()
-    observacoes = models.TextField(null=True)
-    solicitacao = models.ForeignKey(SolicitacaoAlmoxarifadoGrafica, on_delete=models.CASCADE)        
+    observacoes = models.TextField(null=True, verbose_name="Observações")
+    solicitacao = models.ForeignKey(SolicitacaoAlmoxarifadoGrafica, on_delete=models.CASCADE, verbose_name="Solicitação")        
