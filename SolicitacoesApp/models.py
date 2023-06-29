@@ -109,7 +109,7 @@ class MaterialConsumo(models.Model):
     solicitacao = models.ForeignKey(SolicitacaoAlmoxarifadoGrafica, on_delete=models.CASCADE, verbose_name="Solicitação")
 
 class ImpressaoProvasApostilas(models.Model):
-    arquivo = models.FileField(upload_to="arte_pronta")
+    arquivo = models.FileField(upload_to="impressoes/")
     quantidade_provas_apostilas = models.IntegerField(verbose_name="Quantidade de Provas/Apostilas")
     separar_por_polos = models.BooleanField(default=False, verbose_name="Separar por Pólos?")
     localizacao_polo = models.CharField(max_length=100, null=True, verbose_name="Localização do Polo")
