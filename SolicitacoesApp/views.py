@@ -171,3 +171,21 @@ def MenuAdministracao(request):
 
 def Error404View(request, exception):
     return HttpResponseNotFound(render(request, 'errors/404.html', status=404))
+
+class SolicitacaoAlmoxarifadoGraficaCreateView(CreateView):
+    model = SolicitacaoAlmoxarifadoGrafica
+    fields = '__all__'  
+    template_name = 'almoxarifado_grafica/create.html'
+    success_url = reverse_lazy('index')
+
+    def get_form(self, form_class=None):
+
+        form = super().get_form(form_class)
+
+        form.fields['servico'] = forms.ChoiceField(choices=[
+            ('material_consumo', 'Material de Consumo'),
+            ('impressao_provas_apostilas', 'Impressão de Provas/Apostilas'),
+            ('corte_papel', 'Corte de Papel'),
+            ('observacao', 'Observação')
+        ])
+        return form
