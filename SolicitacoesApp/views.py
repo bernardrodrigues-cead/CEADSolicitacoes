@@ -2,7 +2,7 @@ import os, dotenv
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
 
-from SolicitacoesApp.forms import DadosDaViagemForm, DadosDoPrepostoForm
+from SolicitacoesApp.forms import DadosDaViagemForm, DadosDoPrepostoForm, MaterialConsumoForm, CortePapelForm, ImpressaoProvasApostilasForm
 from .models import *
 from django.urls import reverse_lazy
 from django import forms
@@ -172,11 +172,18 @@ def MenuAdministracao(request):
 def Error404View(request, exception):
     return HttpResponseNotFound(render(request, 'errors/404.html', status=404))
 
-class SolicitacaoAlmoxarifadoGraficaCreateView(CreateView):
+class AlmoxarifadoGraficaCreateView(CreateView):
     model = SolicitacaoAlmoxarifadoGrafica
     fields = '__all__'  
     template_name = 'almoxarifado_grafica/create.html'
     success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form_material'] = MaterialConsumoForm()
+        context['form_impressao'] = ImpressaoProvasApostilasForm()
+        context['form_corte'] = CortePapelForm()
+        return context
 
     def get_form(self, form_class=None):
 
@@ -189,3 +196,4 @@ class SolicitacaoAlmoxarifadoGraficaCreateView(CreateView):
             ('observacao', 'Observação')
         ])
         return form
+    
