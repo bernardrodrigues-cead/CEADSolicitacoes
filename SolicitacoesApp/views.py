@@ -174,7 +174,7 @@ def Error404View(request, exception):
 
 class CreateSolicitacaoAlmoxarifadoGraficaView(CreateView):
     model = SolicitacaoAlmoxarifadoGrafica
-    fields = '__all__'  # Ou especifique os campos desejados
+    fields = '__all__'  
     template_name = 'almoxarifado_grafica/create.html'
     success_url = reverse_lazy('index')
 
